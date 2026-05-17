@@ -31,23 +31,24 @@
     </script>
     
     <!-- SEO Optimization Meta Tags -->
-    <title>SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online</title>
-    <meta name="description" content="Take control of your personal finances with SpendAI. Features a 100% free, privacy-first expense tracker, smart 50/30/20 budget planner, savings goal calculator, and subscription auditor designed for Indian Rupee (₹). No signup, no login required.">
-    <meta name="keywords" content="free expense tracker, budget planner online, AI spending analyzer, personal finance manager, 50 30 20 budget India, offline expense manager, money tracker app, SpendAI">
+    <title>SpendAI - Free Expense Tracker Online, AI Budget Planner & Spending Analyzer</title>
+    <meta name="description" content="Manage personal finances offline with SpendAI. A free, privacy-first expense tracker online, AI budget planner, and Indian Rupee (₹) subscription auditor.">
+    <meta name="keywords" content="free expense tracker online, AI budget planner, spending analyzer, free budget calculator, how to track expenses in India, personal finance manager, UPI expense tracker, local budget planner">
     <meta name="author" content="SpendAI.online">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://spendai.online/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://spendai.online/">
-    <meta property="og:title" content="SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online">
+    <meta property="og:title" content="SpendAI - Free Expense Tracker Online, AI Budget Planner & Spending Analyzer">
     <meta property="og:description" content="Track your spending, configure custom 50/30/20 budgets, and audit subscriptions entirely inside your browser. Privacy-first structure saving 100% data locally. No databases, no login required.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://spendai.online/">
-    <meta property="twitter:title" content="SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online">
+    <meta property="twitter:title" content="SpendAI - Free Expense Tracker Online, AI Budget Planner & Spending Analyzer">
     <meta property="twitter:description" content="Track your spending, configure custom 50/30/20 budgets, and audit subscriptions entirely inside your browser. Privacy-first structure saving 100% data locally. No databases, no login required.">
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
 
@@ -55,28 +56,100 @@
     <!-- Swap 'ca-pub-XXXXXXXXXXXXXXXX' with your verified Google AdSense Publisher ID -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
-    <!-- Structured Data: WebApplication JSON-LD -->
+    <!-- Structured Data: Graph JSON-LD Schema (WebApplication, FinancialProduct, FAQPage, HowTo) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "SpendAI",
-      "url": "https://spendai.online",
-      "description": "Free privacy-first online expense tracker, smart 50/30/20 budget planner, savings goal calculator, and subscription auditor optimized for the Indian Rupee (₹). All data is saved offline via localStorage.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00",
-        "priceCurrency": "INR"
-      },
-      "featureList": [
-        "Interactive Expense Tracker Ledger",
-        "Real-Time Smart Category Suggestor",
-        "Customizable 50/30/20 Budget Planner Sliders",
-        "Dynamic Savings Goals Milestones",
-        "Subscription Auditor and Leak Scanner"
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://spendai.online/#webapp",
+          "name": "SpendAI",
+          "url": "https://spendai.online",
+          "description": "Free privacy-first online expense tracker, smart 50/30/20 budget planner, savings goal calculator, and subscription auditor optimized for the Indian Rupee (₹). All data is saved offline via localStorage.",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "INR"
+          },
+          "featureList": [
+            "Interactive Expense Tracker Ledger",
+            "Real-Time Smart Category Suggestor",
+            "Customizable 50/30/20 Budget Planner Sliders",
+            "Dynamic Savings Goals Milestones",
+            "Subscription Auditor and Leak Scanner"
+          ]
+        },
+        {
+          "@type": "FinancialProduct",
+          "@id": "https://spendai.online/#financialproduct",
+          "name": "SpendAI Finance Suite",
+          "description": "Premium browser-based budgeting planner and expense tracking suite designed specifically for Indian Rupee (₹) and offline personal finance management.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://spendai.online/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How to track expenses in India using SpendAI?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simply enter your daily expenses in the interactive ledger. SpendAI automatically reads UPI keywords (Zomato, Swiggy, Uber, flat rents) and categorizes them instantly using local browser-based tracking."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is SpendAI.online completely safe and private?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, SpendAI is 100% private. All your bank statements, UPI transactions, and budget data are saved strictly inside your browser's localStorage. Zero data is sent to external servers or databases."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the 50/30/20 budget rule?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The 50/30/20 rule allocates post-tax salary into three buckets: 50% for fixed Needs (rent, bills, groceries), 30% for fluid Wants (dining, entertainment, hobbies), and 20% for automated Savings and investments."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://spendai.online/#howto",
+          "name": "How to Track UPI and Cash Expenses Together in India",
+          "description": "Step-by-step guide to tracking daily digital and cash transactions offline using SpendAI.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "Enter Net Monthly Income",
+              "text": "Set your starting net monthly salary in the budget planner section.",
+              "url": "https://spendai.online/#tools-section"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Log Daily Transactions",
+              "text": "Add cash and UPI expenses to the ledger. Keywords like 'Chai', 'Uber', 'Zomato', 'Rent' are auto-suggested.",
+              "url": "https://spendai.online/#tools-section"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Audit with 50/30/20 Allocation",
+              "text": "Compare your actual ledger spending against the customizable Needs, Wants, and Savings target sliders.",
+              "url": "https://spendai.online/#tools-section"
+            }
+          ]
+        }
       ]
     }
     </script>
@@ -262,8 +335,8 @@
             </span>
 
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-[1.15] sm:leading-[1.1]">
-                Track Your Spending.<br class="hidden sm:inline">
-                <span class="bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">Save More Money.</span>
+                Free Expense Tracker Online.<br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">Smart AI Budget Planner.</span>
             </h1>
 
             <p class="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">

@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Immediate Theme Initialization to Prevent Flash -->
+    <script>
+        (function() {
+            try {
+                var localData = localStorage.getItem('spendai_data');
+                var theme = 'dark'; // Default to dark mode
+                if (localData) {
+                    var parsed = JSON.parse(localData);
+                    if (parsed && parsed.currentTheme) {
+                        theme = parsed.currentTheme;
+                    }
+                }
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.backgroundColor = '#0b1329';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.backgroundColor = '#f8fafc';
+                }
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.style.backgroundColor = '#0b1329';
+            }
+        })();
+    </script>
+    
+    <!-- SEO Optimization Meta Tags -->
+    <title>SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online</title>
+    <meta name="description" content="Take control of your personal finances with SpendAI. Features a 100% free, privacy-first expense tracker, smart 50/30/20 budget planner, savings goal calculator, and subscription auditor designed for Indian Rupee (₹). No signup, no login required.">
+    <meta name="keywords" content="free expense tracker, budget planner online, AI spending analyzer, personal finance manager, 50 30 20 budget India, offline expense manager, money tracker app, SpendAI">
+    <meta name="author" content="SpendAI.online">
+    <link rel="canonical" href="https://spendai.online/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spendai.online/">
+    <meta property="og:title" content="SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online">
+    <meta property="og:description" content="Track your spending, configure custom 50/30/20 budgets, and audit subscriptions entirely inside your browser. Privacy-first structure saving 100% data locally. No databases, no login required.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://spendai.online/">
+    <meta property="twitter:title" content="SpendAI - Smart Expense Tracker & Free 50/30/20 Budget Planner Online">
+    <meta property="twitter:description" content="Track your spending, configure custom 50/30/20 budgets, and audit subscriptions entirely inside your browser. Privacy-first structure saving 100% data locally. No databases, no login required.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+
+    <!-- Google AdSense Integration (Global Script) -->
+    <!-- Swap 'ca-pub-XXXXXXXXXXXXXXXX' with your verified Google AdSense Publisher ID -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+    <!-- Structured Data: WebApplication JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SpendAI",
+      "url": "https://spendai.online",
+      "description": "Free privacy-first online expense tracker, smart 50/30/20 budget planner, savings goal calculator, and subscription auditor optimized for the Indian Rupee (₹). All data is saved offline via localStorage.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "INR"
+      },
+      "featureList": [
+        "Interactive Expense Tracker Ledger",
+        "Real-Time Smart Category Suggestor",
+        "Customizable 50/30/20 Budget Planner Sliders",
+        "Dynamic Savings Goals Milestones",
+        "Subscription Auditor and Leak Scanner"
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        accent: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        darkBg: '#0b1329',
+                        darkCard: '#1c2541',
+                        darkBorder: '#3a506b',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Tab transitions */
+        .tab-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Premium Solid Glassmorphic Background for ads */
+        .adsense-premium-unit {
+            background-color: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .adsense-premium-unit {
+            background-color: rgba(28, 37, 65, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(58, 80, 107, 0.4);
+        }
+        .adsense-premium-unit:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        .dark .adsense-premium-unit:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0b1329] dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-brand-600 via-accent-600 to-brand-700 text-white text-center py-2 px-4 text-xs font-semibold tracking-wide flex justify-center items-center gap-2">
+        <span class="inline-flex items-center justify-center bg-white/20 text-white px-2 py-0.5 rounded-full text-[10px] uppercase font-bold tracking-wider animate-pulse">Update</span>
+        <span>Secure offline-first tracking. All data is saved inside your browser. No signup needed!</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-[#0b1329]/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">SpendAI</span>
+                    <span class="text-[10px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-md uppercase tracking-wider">v2.6</span>
+                </div>
+
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#hero" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
+                    <a href="#why-spendai" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Why SpendAI</a>
+                    <a href="#tools-section" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Smart Tools</a>
+                    <a href="#blog" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Money Academy</a>
+                    <a href="#faq" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Privacy & FAQ</a>
+                </div>
+
+                <!-- Action Button & Dark Mode & Mobile Menu Button -->
+                <div class="flex items-center gap-3">
+                    <!-- Developer Ad Preview Toggle -->
+                    <button id="ad-preview-toggle" onclick="toggleAdPreviews()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" title="Toggle Ads Previews (Developer Mode)">
+                        <i data-lucide="eye" class="w-5 h-5 hidden ad-eye-on"></i>
+                        <i data-lucide="eye-off" class="w-5 h-5 block ad-eye-off"></i>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+
+                    <!-- CTA -->
+                    <a href="#tools-section" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 active:scale-95">
+                        <span>Launch App</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+
+                    <!-- Hamburger Button (Mobile) -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Open Navigation Menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1329] px-4 py-4 space-y-3 transition-all duration-300 shadow-xl">
+            <a href="#hero" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
+            <a href="#why-spendai" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Why SpendAI</a>
+            <a href="#tools-section" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Smart Tools</a>
+            <a href="#blog" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Money Academy</a>
+            <a href="#faq" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Privacy & FAQ</a>
+            <a href="#tools-section" class="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-brand-600 to-accent-600 text-white py-3 rounded-xl font-bold shadow-md">
+                <span>Start Tracking</span>
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="relative overflow-hidden pt-12 pb-16 md:py-20 bg-gradient-to-b from-brand-50/50 via-white to-transparent dark:from-brand-900/10 dark:via-[#0b1329] dark:to-transparent border-b border-slate-150 dark:border-slate-800">
+        <!-- Glowing Ambient Lights in BG -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-500/10 to-accent-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-2 bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6 border border-brand-200 dark:border-brand-800/50 shadow-sm">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                100% Privacy Focused &bull; No Login Required
+            </span>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-[1.15] sm:leading-[1.1]">
+                Track Your Spending.<br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">Save More Money.</span>
+            </h1>
+
+            <p class="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+                Free smart tools designed to understand where your money goes. Built entirely in your browser — no apps to install, no accounts to link, and zero cost.
+            </p>
+
+            <!-- Hero Action Area -->
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+                <a href="#tools-section" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white px-8 py-4 rounded-2xl font-bold text-base shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30 hover:scale-[1.02] active:scale-95 active:scale-[0.97] transition-all">
+                    <span>Start Tracking Free</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#blog" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-2xl font-bold text-base shadow-sm transition-all hover:scale-[1.02] active:scale-[0.97]">
+                    <span>Read Money Guides</span>
+                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="mt-12 pt-8 border-t border-slate-200/60 dark:border-slate-800/60 max-w-3xl mx-auto flex flex-wrap justify-center items-center gap-y-4 gap-x-8 sm:gap-x-12 text-sm font-semibold text-slate-500 dark:text-slate-400">
+                <span class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    100% Free Forever
+                </span>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="shield" class="w-5 h-5 text-brand-500"></i>
+                    Data Stays on Your Device
+                </span>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-brand-500"></i>
+                    Made for Indian Rupee (₹)
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION: HOW IT WORKS / WHY SPENDAI -->
+    <section id="why-spendai" class="py-16 bg-white dark:bg-[#0c152d] border-b border-slate-150 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 px-3 py-1.5 rounded-full tracking-wider">High Fidelity Utilities</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-4 sm:text-4xl">Why Choose SpendAI?</h2>
+                <p class="mt-4 text-base text-slate-600 dark:text-slate-300">Experience smart browser-based budgeting engineered to protect your personal data with robust finance heuristics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 rounded-2xl p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">100% Privacy Sandbox</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">No phone numbers, no OTP verification, and no cloud databases. Your spending numbers are stored strictly within local storage sandbox. Security is absolute.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 rounded-2xl p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Heuristic Category Predictor</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Our advanced parsing filters instantly recognize descriptors like Zomato, Swiggy, Uber, Metro, Jio, or flat rents to auto-select categories as you type.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 rounded-2xl p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Triple-Tier Calculations</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Sync transaction logs instantly with custom 50/30/20 budget planners, active monthly saving milestones trackers, and subscription leakage auditors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Slot: Between Hero & Tools -->
+    <div class="my-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ad-slot-container">
+        <div class="adsense-premium-unit rounded-3xl p-6 text-center text-xs select-none min-h-[100px] flex flex-col sm:flex-row justify-between items-center relative overflow-hidden transition-all duration-300">
+            <!-- AdSense HTML Embed Code placeholder -->
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1111111111"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-amber-500">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div class="text-left">
+                    <span class="font-extrabold uppercase tracking-wider text-[9px] bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400 px-2 py-0.5 rounded">Sponsored Slot</span>
+                    <p class="font-bold text-[12px] text-slate-800 dark:text-slate-100 mt-1">Google AdSense Leaderboard Banner</p>
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Standard 728x90 responsive layout element.</p>
+                </div>
+            </div>
+            <div class="mt-4 sm:mt-0 text-slate-400 text-[10px] font-semibold border-l border-slate-200 dark:border-slate-700 pl-4 text-left hidden md:block">
+                This area will automatically display contextually relevant<br>ads once configured with your verified publisher script keys.
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN TOOLS SECTION -->
+    <main id="tools-section" class="py-12 bg-white dark:bg-[#0d162d] flex-grow transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    Smart Financial Tools Suite
+                </h2>
+                <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300">
+                    Switch between our comprehensive, privacy-first tools designed to help you organize budget limits, track daily transactions, and plan life savings milestones.
+                </p>
+            </div>
+
+            <!-- Tab Switcher Navigation -->
+            <div class="flex justify-center mb-10">
+                <div class="bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl flex flex-wrap justify-center gap-1.5 max-w-full sm:max-w-4xl border border-slate-200/50 dark:border-slate-700/50 shadow-inner">
+                    <button onclick="switchTab('tracker')" id="tab-btn-tracker" class="tab-btn active inline-flex items-center gap-2 py-3 px-5 sm:px-6 rounded-xl text-sm font-bold transition-all whitespace-nowrap bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm active:scale-[0.97]">
+                        <i data-lucide="pie-chart" class="w-4 h-4 text-brand-500"></i>
+                        <span>Expense Tracker</span>
+                    </button>
+                    <button onclick="switchTab('planner')" id="tab-btn-planner" class="tab-btn inline-flex items-center gap-2 py-3 px-5 sm:px-6 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all whitespace-nowrap active:scale-[0.97]">
+                        <i data-lucide="sliders" class="w-4 h-4"></i>
+                        <span>50/30/20 Planner</span>
+                    </button>
+                    <button onclick="switchTab('savings')" id="tab-btn-savings" class="tab-btn inline-flex items-center gap-2 py-3 px-5 sm:px-6 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all whitespace-nowrap active:scale-[0.97]">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span>Savings Goals</span>
+                    </button>
+                    <button onclick="switchTab('subscription')" id="tab-btn-subscription" class="tab-btn inline-flex items-center gap-2 py-3 px-5 sm:px-6 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all whitespace-nowrap active:scale-[0.97]">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                        <span>Subscription Auditor</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- GRID CONTAINER: Sidebar + Tab Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- LEFT CONTENT AREA: Dynamic Tab Content -->
+                <div class="lg:col-span-9 relative bg-slate-50/50 dark:bg-slate-900/30 border border-slate-200/60 dark:border-slate-800/60 rounded-3xl p-4 sm:p-6 shadow-xl backdrop-blur-sm min-h-[500px]">
+
+                    <!-- 1. TOOL A: EXPENSE TRACKER -->
+                    <div id="tab-content-tracker" class="tab-pane block space-y-8 animate-fadeIn">
+                        <!-- Tracker Analytics Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Total Spent -->
+                            <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex items-center gap-5">
+                                <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                                    <i data-lucide="trending-up" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Spent (All-Time)</p>
+                                    <h3 id="stat-total-spent" class="text-2xl font-black text-slate-900 dark:text-white mt-1">₹0.00</h3>
+                                </div>
+                            </div>
+                            <!-- Spent This Month -->
+                            <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex items-center gap-5">
+                                <div class="w-12 h-12 rounded-xl bg-accent-50 dark:bg-accent-900/20 text-accent-600 dark:text-accent-400 flex items-center justify-center">
+                                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Spent This Month</p>
+                                    <h3 id="stat-month-spent" class="text-2xl font-black text-slate-900 dark:text-white mt-1">₹0.00</h3>
+                                </div>
+                            </div>
+                            <!-- Number of Transactions -->
+                            <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex items-center gap-5">
+                                <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                    <i data-lucide="receipt" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Transactions Count</p>
+                                    <h3 id="stat-count" class="text-2xl font-black text-slate-900 dark:text-white mt-1">0</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Entry Form & Chart Breakdown -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <!-- Form Section -->
+                            <div class="lg:col-span-5 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 id="expense-form-title" class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="plus-circle" class="w-5 h-5 text-brand-500"></i>
+                                        Add New Expense
+                                    </h3>
+                                    <button id="cancel-edit-btn" onclick="resetExpenseForm()" class="hidden text-xs font-bold text-red-500 hover:text-red-600 dark:text-red-400">
+                                        Cancel Edit
+                                    </button>
+                                </div>
+
+                                <form id="expense-form" onsubmit="handleExpenseSubmit(event)" class="space-y-4">
+                                    <input type="hidden" id="expense-edit-id">
+                                    
+                                    <!-- Amount Input -->
+                                    <div>
+                                        <label for="expense-amount" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Amount (₹) *</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                                <span class="text-slate-400 dark:text-slate-500 font-extrabold text-base">₹</span>
+                                            </div>
+                                            <input type="number" id="expense-amount" step="any" required min="1" placeholder="e.g. 450" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all">
+                                        </div>
+                                    </div>
+
+                                    <!-- Description Input with Smart Categorizer -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label for="expense-description" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">Description *</label>
+                                            <span id="suggest-badge" class="hidden text-[10px] font-bold bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded-full border border-brand-200 dark:border-brand-800 animate-pulse">Auto-Categorized</span>
+                                        </div>
+                                        <div class="relative">
+                                            <input type="text" id="expense-description" required placeholder="e.g. Swiggy dinner / Petrol for bike" oninput="autoSuggestCategory(this.value)" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all">
+                                        </div>
+                                    </div>
+
+                                    <!-- Category Dropdown -->
+                                    <div>
+                                        <label for="expense-category" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Category *</label>
+                                        <select id="expense-category" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all">
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="Groceries">🥬 Groceries</option>
+                                            <option value="Transport/Petrol">⛽ Transport / Petrol</option>
+                                            <option value="Rent">🏠 Rent</option>
+                                            <option value="Utilities">💡 Utilities (Electricity, Water)</option>
+                                            <option value="Food & Dining">🍔 Food & Dining</option>
+                                            <option value="Subscriptions">📺 Subscriptions</option>
+                                            <option value="Shopping">🛍️ Shopping</option>
+                                            <option value="Mobile Recharge">📱 Mobile Recharge</option>
+                                            <option value="Health">⚕️ Health / Medicines</option>
+                                            <option value="Education">🎓 Education</option>
+                                            <option value="Entertainment">🎬 Entertainment</option>
+                                            <option value="EMI/Loans">💸 EMI / Loans</option>
+                                            <option value="Misc">📦 Miscellaneous</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Date Picker -->
+                                    <div>
+                                        <label for="expense-date" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Date *</label>
+                                        <input type="date" id="expense-date" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all">
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <button type="submit" id="expense-submit-btn" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.97]">
+                                        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                                        <span id="submit-btn-text">Add Expense</span>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Interactive Chart Panel -->
+                            <div class="lg:col-span-7 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                                        <i data-lucide="donut-chart" class="w-5 h-5 text-accent-500"></i>
+                                        Spending Breakdown
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Interactive visual breakdown of your categories.</p>
+                                </div>
+                                <div class="flex-grow flex items-center justify-center my-6 min-h-[250px] relative">
+                                    <div id="chart-placeholder" class="hidden text-center text-slate-400">
+                                        <i data-lucide="bar-chart-2" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                                        <p class="text-sm font-semibold">No expenses found for current filters</p>
+                                    </div>
+                                    <canvas id="spending-chart" class="max-w-[320px] max-h-[320px]"></canvas>
+                                </div>
+                                <div class="text-center bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                                    💡 Tip: Hover over slices to view category percentages or click items in the legend to toggle views.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtering, Search & CSV Operations -->
+                        <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm space-y-4">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i data-lucide="list" class="w-5 h-5 text-brand-500"></i>
+                                    Detailed Ledger Log
+                                </h3>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <button onclick="exportExpensesToCSV()" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.97]">
+                                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                        <span>Export CSV</span>
+                                    </button>
+                                    <button onclick="clearAllExpenses()" class="inline-flex items-center gap-1.5 bg-red-50 hover:bg-red-100 dark:bg-red-955/30 dark:hover:bg-red-900/30 text-red-650 dark:text-red-400 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.97]">
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                        <span>Clear All Data</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Filters Panel -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-100 dark:border-slate-700">
+                                <div>
+                                    <label for="filter-month" class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Filter By Month</label>
+                                    <select id="filter-month" onchange="renderExpenses()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg py-2.5 px-3 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500">
+                                        <option value="all">All Months</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="filter-category" class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Filter By Category</label>
+                                    <select id="filter-category" onchange="renderExpenses()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg py-2.5 px-3 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500">
+                                        <option value="all">All Categories</option>
+                                        <option value="Groceries">🥬 Groceries</option>
+                                        <option value="Transport/Petrol">⛽ Transport / Petrol</option>
+                                        <option value="Rent">🏠 Rent</option>
+                                        <option value="Utilities">💡 Utilities</option>
+                                        <option value="Food & Dining">🍔 Food & Dining</option>
+                                        <option value="Subscriptions">📺 Subscriptions</option>
+                                        <option value="Shopping">🛍️ Shopping</option>
+                                        <option value="Mobile Recharge">📱 Mobile Recharge</option>
+                                        <option value="Health">⚕️ Health</option>
+                                        <option value="Education">🎓 Education</option>
+                                        <option value="Entertainment">🎬 Entertainment</option>
+                                        <option value="EMI/Loans">💸 EMI / Loans</option>
+                                        <option value="Misc">📦 Miscellaneous</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="search-description" class="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Search Keywords</label>
+                                    <input type="text" id="search-description" oninput="renderExpenses()" placeholder="e.g. Swiggy" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg py-2.5 px-3 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500">
+                                </div>
+                            </div>
+
+                            <!-- Mobile Swipe Guidance Tag -->
+                            <div class="block sm:hidden text-center bg-slate-100 dark:bg-slate-900 p-2.5 rounded-xl text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-3 border border-slate-200/50 dark:border-slate-800 flex items-center justify-center gap-1.5 animate-pulse">
+                                <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+                                <span>Swipe horizontal to view actions ↔️</span>
+                            </div>
+
+                            <!-- Table Ledger (Mobile Responsive Scroll) -->
+                            <div class="overflow-x-auto rounded-xl border border-slate-150 dark:border-slate-700/60 shadow-inner">
+                                <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[600px] sm:min-w-full">
+                                    <thead>
+                                        <tr class="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-150 dark:border-slate-800 text-[10px] uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+                                            <th class="py-3.5 px-4">Date</th>
+                                            <th class="py-3.5 px-4">Category</th>
+                                            <th class="py-3.5 px-4">Description</th>
+                                            <th class="py-3.5 px-4 text-right">Amount</th>
+                                            <th class="py-3.5 px-4 text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="expenses-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                                        <!-- Rendered dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- AdSense Slot: After Ledger Table -->
+                            <div class="mt-6 ad-slot-container">
+                                <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[100px] flex flex-col sm:flex-row justify-between items-center relative overflow-hidden transition-all duration-300">
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-format="fluid"
+                                         data-ad-layout-key="-gw-3e+1f-3d-2z"
+                                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                                         data-ad-slot="2222222222"></ins>
+                                    <script>
+                                         (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 dark:bg-brand-500/20 flex items-center justify-center text-brand-500">
+                                            <i data-lucide="tag" class="w-5 h-5"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <span class="font-extrabold uppercase tracking-wider text-[9px] bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded">Sponsored Inline Banner</span>
+                                            <p class="font-bold text-[12px] text-slate-800 dark:text-slate-100 mt-1">Google AdSense Inline Ledger Unit</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-slate-400 text-[10px] font-semibold border-l border-slate-200 dark:border-slate-700 pl-4 hidden md:block">
+                                        Will dynamically fetch matched advertiser tags based on your keywords.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. TOOL B: BUDGET PLANNER (50/30/20 RULE) -->
+                    <div id="tab-content-planner" class="tab-pane hidden space-y-8 animate-fadeIn">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <!-- Controls & Input -->
+                            <div class="lg:col-span-5 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm space-y-6">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="landmark" class="w-5 h-5 text-accent-500"></i>
+                                        Establish Smart Limits
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Configure your monthly income to see recommendation allocations based on financial paradigms.</p>
+                                </div>
+
+                                <!-- Income Input -->
+                                <div>
+                                    <label for="budget-income" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Monthly Post-Tax Income (₹) *</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                            <span class="text-slate-400 dark:text-slate-500 font-extrabold text-base">₹</span>
+                                        </div>
+                                        <input type="number" id="budget-income" value="50000" min="0" oninput="calculateBudgetAllocation()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-100 dark:border-slate-700">
+
+                                <!-- Editable Allocation Percentages -->
+                                <div class="space-y-4">
+                                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Custom Category Percentage Spreads</h4>
+                                    
+                                    <!-- Needs Percentage -->
+                                    <div>
+                                        <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">
+                                            <span>🥬 Needs (e.g. Rent, Food, EMIs)</span>
+                                            <span id="pct-needs-label">50%</span>
+                                        </div>
+                                        <input type="range" id="slider-needs" min="0" max="100" value="50" oninput="handleSliderChange('needs')" class="w-full accent-brand-500 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+
+                                    <!-- Wants Percentage -->
+                                    <div>
+                                        <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">
+                                            <span>🎬 Wants (e.g. Travel, Movies, Cafe)</span>
+                                            <span id="pct-wants-label">30%</span>
+                                        </div>
+                                        <input type="range" id="slider-wants" min="0" max="100" value="30" oninput="handleSliderChange('wants')" class="w-full accent-accent-500 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+
+                                    <!-- Savings Percentage -->
+                                    <div>
+                                        <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">
+                                            <span>🎯 Savings & Debts (e.g. Mutual Funds)</span>
+                                            <span id="pct-savings-label">20%</span>
+                                        </div>
+                                        <input type="range" id="slider-savings" min="0" max="100" value="20" oninput="handleSliderChange('savings')" class="w-full accent-emerald-500 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+
+                                    <!-- Percentage Alert Validation -->
+                                    <div id="percentage-total-warning" class="hidden text-xs bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 p-3 rounded-lg border border-red-200 dark:border-red-900/50">
+                                        ⚠️ Warning: Your total custom allocations sum up to <strong id="total-percentage-sum">100%</strong>. Adjust sliders to sum exactly to 100% for proper budgeting limits.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Visual Breakdown / Outputs -->
+                            <div class="lg:col-span-7 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col justify-between space-y-6">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="check-square" class="w-5 h-5 text-brand-500"></i>
+                                        Budget Allocations Summary
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Here is how your income scales across your configured boundaries, alongside actual current tracker comparisons.</p>
+                                </div>
+
+                                <!-- Needs Output Card -->
+                                <div class="bg-brand-50/40 dark:bg-brand-900/10 border border-brand-200/50 dark:border-brand-800/50 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-brand-500 transition-colors">
+                                    <div>
+                                        <span class="inline-flex items-center gap-1 text-[10px] font-extrabold tracking-wider bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 px-2 py-0.5 rounded uppercase">Needs</span>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1.5">Necessary Basic Living Expenses</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Total Limit recommended amount</p>
+                                    </div>
+                                    <div class="text-left sm:text-right">
+                                        <span id="val-needs" class="text-xl font-black text-brand-600 dark:text-brand-400">₹25,000.00</span>
+                                        <p id="actual-needs-vs" class="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">Spent: ₹0.00</p>
+                                    </div>
+                                </div>
+
+                                <!-- Wants Output Card -->
+                                <div class="bg-accent-50/40 dark:bg-accent-900/10 border border-accent-200/50 dark:border-accent-800/50 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-accent-500 transition-colors">
+                                    <div>
+                                        <span class="inline-flex items-center gap-1 text-[10px] font-extrabold tracking-wider bg-accent-100 dark:bg-accent-900/40 text-accent-700 dark:text-accent-300 px-2 py-0.5 rounded uppercase">Wants</span>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1.5">Discretionary Fun Expenses</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Total Limit recommended amount</p>
+                                    </div>
+                                    <div class="text-left sm:text-right">
+                                        <span id="val-wants" class="text-xl font-black text-accent-600 dark:text-accent-400">₹15,000.00</span>
+                                        <p id="actual-wants-vs" class="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">Spent: ₹0.00</p>
+                                    </div>
+                                </div>
+
+                                <!-- Savings Output Card -->
+                                <div class="bg-emerald-50/40 dark:bg-emerald-955/10 border border-emerald-200/50 dark:border-emerald-900/50 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-emerald-500 transition-colors">
+                                    <div>
+                                        <span class="inline-flex items-center gap-1 text-[10px] font-extrabold tracking-wider bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded uppercase">Savings</span>
+                                        <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1.5">Investments & Financial Goals</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Recommended target rate to build wealth</p>
+                                    </div>
+                                    <div class="text-left sm:text-right">
+                                        <span id="val-savings" class="text-xl font-black text-emerald-600 dark:text-emerald-400">₹10,000.00</span>
+                                        <p id="actual-savings-vs" class="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">Spent: ₹0.00</p>
+                                    </div>
+                                </div>
+
+                                <!-- Overspending Warning Alerts -->
+                                <div id="overspend-alert-box" class="hidden text-xs bg-amber-50 dark:bg-amber-955/20 text-amber-700 dark:text-amber-400 p-4 rounded-xl border border-amber-200 dark:border-amber-900/50 flex gap-2">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0"></i>
+                                    <div>
+                                        <strong class="font-bold">Overspending warning:</strong>
+                                        <span id="overspend-alert-text">You are spending more than recommended budget thresholds for your income brackets!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. TOOL C: SAVINGS GOAL CALCULATOR -->
+                    <div id="tab-content-savings" class="tab-pane hidden space-y-8 animate-fadeIn">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <!-- Goal Setup -->
+                            <div class="lg:col-span-5 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
+                                    <i data-lucide="compass" class="w-5 h-5 text-brand-500"></i>
+                                    Setup Target Savings Goal
+                                </h3>
+
+                                <form id="goal-form" onsubmit="handleGoalSubmit(event)" class="space-y-4">
+                                    <!-- Goal Name -->
+                                    <div>
+                                        <label for="goal-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Goal Description / Milestone Name *</label>
+                                        <input type="text" id="goal-name" required placeholder="e.g. Downpayment for Car / Emergency Fund" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                    </div>
+
+                                    <!-- Target Amount -->
+                                    <div>
+                                        <label for="goal-target" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Target Savings Goal Amount (₹) *</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                                <span class="text-slate-400 dark:text-slate-500 font-extrabold text-base">₹</span>
+                                            </div>
+                                            <input type="number" id="goal-target" required min="1000" placeholder="e.g. 50000" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        </div>
+                                    </div>
+
+                                    <!-- Current Saved Amount -->
+                                    <div>
+                                        <label for="goal-current" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Already Saved Amount (₹)</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                                <span class="text-slate-400 dark:text-slate-500 font-extrabold text-base">₹</span>
+                                            </div>
+                                            <input type="number" id="goal-current" min="0" value="0" placeholder="e.g. 5000" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        </div>
+                                    </div>
+
+                                    <!-- Duration Months -->
+                                    <div>
+                                        <label for="goal-duration" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Timeline Duration (Months) *</label>
+                                        <input type="number" id="goal-duration" required min="1" max="120" placeholder="e.g. 12" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                    </div>
+
+                                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.97]">
+                                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                        <span>Create Goal Card</span>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Target Visualizers -->
+                            <div class="lg:col-span-7 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm space-y-6">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <i data-lucide="gem" class="w-5 h-5 text-accent-500"></i>
+                                        Active Financial Milestones
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Track monthly milestones needed to realize your targets. All milestones update dynamically.</p>
+                                </div>
+
+                                <!-- List of Goals -->
+                                <div id="goals-container" class="space-y-4 max-h-[360px] overflow-y-auto pr-1">
+                                    <!-- Dynamic Goal Card Render -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. TOOL D: SUBSCRIPTION AUDITOR -->
+                    <div id="tab-content-subscription" class="tab-pane hidden space-y-8 animate-fadeIn">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <!-- Add Form -->
+                            <div class="lg:col-span-5 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
+                                    <i data-lucide="plus-circle" class="w-5 h-5 text-brand-500"></i>
+                                    Audit Existing Subscriptions
+                                </h3>
+
+                                <form id="subscription-form" onsubmit="handleSubscriptionSubmit(event)" class="space-y-4">
+                                    <!-- Name -->
+                                    <div>
+                                        <label for="sub-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Subscription Name *</label>
+                                        <input type="text" id="sub-name" required placeholder="e.g. Netflix Premium / Gym Membership" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                    </div>
+
+                                    <!-- Cost per Month -->
+                                    <div>
+                                        <label for="sub-cost" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">Monthly Billing Price (₹) *</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                                <span class="text-slate-400 dark:text-slate-505 font-extrabold text-base">₹</span>
+                                            </div>
+                                            <input type="number" id="sub-cost" required min="1" placeholder="e.g. 649" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.97]">
+                                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                                        <span>Track Subscription</span>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Savings Opportunities -->
+                            <div class="lg:col-span-7 bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm space-y-6">
+                                <!-- Metrics Cards -->
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-red-50/40 dark:bg-red-955/10 rounded-xl p-4 border border-red-200/40 dark:border-red-900/30 text-center">
+                                        <span class="text-[10px] font-extrabold uppercase text-slate-450 tracking-wider">Total Monthly Leaks</span>
+                                        <h4 id="sub-total-monthly" class="text-xl font-black text-red-650 dark:text-red-400 mt-1">₹0.00</h4>
+                                    </div>
+                                    <div class="bg-amber-50/40 dark:bg-amber-955/10 rounded-xl p-4 border border-amber-200/40 dark:border-amber-900/30 text-center">
+                                        <span class="text-[10px] font-extrabold uppercase text-slate-450 tracking-wider">Total Yearly Leaks</span>
+                                        <h4 id="sub-total-yearly" class="text-xl font-black text-amber-655 dark:text-amber-400 mt-1">₹0.00</h4>
+                                    </div>
+                                </div>
+
+                                <!-- List of Subscriptions with Cancel/Audit check -->
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center font-bold">
+                                        <h4 class="text-sm text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                                            <i data-lucide="alert-circle" class="w-4 h-4 text-brand-500"></i>
+                                            Auditor List Log
+                                        </h4>
+                                        <span class="text-[10px] bg-emerald-100 dark:bg-emerald-955/30 text-emerald-700 dark:text-emerald-400 px-2.5 py-1 rounded-full">
+                                            Potential Annual Savings: <strong id="potential-savings">₹0.00</strong>
+                                        </span>
+                                    </div>
+
+                                    <div id="subs-container" class="space-y-3 max-h-[220px] overflow-y-auto pr-1">
+                                        <!-- Dynamic elements render here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDEBAR: Google AdSense Desktop Slot (Col span 3) -->
+                <!-- AdSense Slot: Sidebar -->
+                <aside class="hidden lg:block lg:col-span-3 space-y-6 ad-slot-container">
+                    <div class="sticky top-24">
+                        <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[600px] flex flex-col justify-between items-center relative overflow-hidden transition-all duration-300">
+                            <!-- Live AdSense Code inside Sidebar -->
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                                 data-ad-slot="3333333333"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                 (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                            <div class="flex flex-col items-center gap-2 mt-4">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-500/10 dark:bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400 shadow-md">
+                                    <i data-lucide="layout" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-extrabold uppercase tracking-wider text-[9px] bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded mt-2">Sponsored Sidebar</span>
+                                <h4 class="font-extrabold text-[13px] text-slate-800 dark:text-slate-100">AdSense Responsive Tower</h4>
+                            </div>
+                            
+                            <div class="space-y-3 text-left w-full border-t border-slate-200 dark:border-slate-700 pt-4">
+                                <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                                    Standard 300x600 responsive ad unit coordinates perfectly next to tracker modules.
+                                </p>
+                                <p class="text-[9px] text-slate-400 dark:text-slate-500 leading-relaxed italic">
+                                    Previews can be toggled using the Ad preview controller in the top navbar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MONEY ACADEMY / LEARN SECTION -->
+    <section id="blog" class="py-16 sm:py-20 bg-slate-50 dark:bg-[#0b1329] border-t border-b border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 px-3.5 py-1.5 rounded-full tracking-wider">Financial Literacy</span>
+                <h2 class="text-3.5xl font-extrabold text-slate-900 dark:text-white mt-4 sm:text-4xl">Smart Money Academy</h2>
+                <p class="mt-4 text-base text-slate-650 dark:text-slate-300 max-w-2xl mx-auto">
+                    Actionable, in-depth personal finance intelligence designed specifically for the modern Indian earner. Master UPI flows, cancel recurring leaks, build robust emergency funds, and optimize local portfolios offline.
+                </p>
+            </div>
+
+            <!-- Blog Post Grid (Statically pre-rendered for search bots indexation) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Post 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-brand-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 17, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 5 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-brand-600 dark:text-brand-400 uppercase bg-brand-50 dark:bg-brand-900/20 px-2.5 py-1 rounded-md">Privacy & Tech</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Track Expenses Without Cloud Apps</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-450 line-clamp-3">Understand the ultimate utility of local files, offline ledger sheets, and local browser tools to ensure zero trace of private bank statements online.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('cloud-apps')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-accent-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 16, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-accent-600 dark:text-accent-400 uppercase bg-accent-50 dark:bg-accent-900/20 px-2.5 py-1 rounded-md">India Finance</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Invisible Money Leaks in Indian Households</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-450 line-clamp-3">From forgotten ₹199 mobile data vouchers to double-billed subscription bundles, find out which recurring elements dry up savings quickly.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('money-leaks')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-amber-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 14, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 8 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-amber-600 dark:text-amber-400 uppercase bg-amber-50 dark:bg-amber-900/20 px-2.5 py-1 rounded-md">Smart Saving</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Save Up to ₹5,000+ Every Single Month</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-450 line-clamp-3">Proven checklists mapping direct action items to trim utilities bills, optimize transport loops, and budget premium grocery alternatives.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('save-five-thousand')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 4 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-red-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 13, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 7 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-red-600 dark:text-red-400 uppercase bg-red-50 dark:bg-red-950/20 px-2.5 py-1 rounded-md">Credit & EMIs</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Mastering Credit Cards & EMIs in India</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-450 line-clamp-3">Credit cards can be powerful wealth builders if used correctly. Learn how to manage credit card interest-free cycles without falling into debt traps.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('credit-emi')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 5 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-brand-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 12, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-brand-600 dark:text-brand-400 uppercase bg-brand-50 dark:bg-brand-900/20 px-2.5 py-1 rounded-md">Milestones</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">How to Build an Emergency Fund (2026)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">The baseline emergency requirements in 2026. Learn safe Indian avenues (sweep-in FDs, liquid funds) to insulate your household finances.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('emergency-fund')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 6 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-accent-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 11, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 5 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-accent-600 dark:text-accent-400 uppercase bg-accent-50 dark:bg-accent-900/20 px-2.5 py-1 rounded-md">Transaction Tracking</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Best Ways to Track UPI & Cash Together</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">Micro UPI payments (₹10 chai stalls, autowala charges) clog bank statements. Discover structural parsing filters to consolidate UPI & cash leaks.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('track-upi-cash')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 7 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-emerald-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 10, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase bg-emerald-50 dark:bg-emerald-900/20 px-2.5 py-1 rounded-md">Mistakes Audit</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Common Budgeting Mistakes Indians Make</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">Mistaking savings as "whatever is left at the end of the month" or neglecting seasonal premium bills. Avoid structural leaks instantly.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('budget-mistakes')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Post 8 -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:border-amber-500/30">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                            <span>May 09, 2026</span>
+                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 Min Read</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-extrabold tracking-wider text-amber-600 dark:text-amber-400 uppercase bg-amber-50 dark:bg-amber-900/20 px-2.5 py-1 rounded-md">Salaried Guides</span>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">50/30/20 Rule for Indian Salaries</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">How to adapt standard limits to Indian household contexts. Scaling structures for ₹30k, ₹75k, and ₹1.5L salary ranges in Tier-1 cities.</p>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
+                        <button onclick="readArticle('salary-50-30-20')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+
+                <!-- AdSense Slot: Inside Blog Section -->
+                <div class="ad-slot-container">
+                    <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[220px] flex flex-col justify-between items-center relative overflow-hidden transition-all duration-300">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-format="fluid"
+                             data-ad-layout-key="-fg+5h+20-m-4w"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="4444444444"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-xl bg-accent-500/10 dark:bg-accent-500/20 flex items-center justify-center text-accent-500 shadow-md">
+                                <i data-lucide="megaphone" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-extrabold uppercase tracking-wider text-[9px] bg-accent-100 dark:bg-accent-950 text-accent-700 dark:text-accent-400 px-2 py-0.5 rounded mt-1">Sponsored Box</span>
+                            <h4 class="font-bold text-[12px] text-slate-800 dark:text-slate-100">Google AdSense Native ad</h4>
+                        </div>
+                        <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-2 leading-relaxed border-t border-slate-150 dark:border-slate-700 pt-3">
+                            Will dynamically match educational topics to native marketing content blocks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST & PRIVACY FAQ SECTION -->
+    <section id="faq" class="py-16 sm:py-20 bg-white dark:bg-[#0d162d] transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-extrabold uppercase bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-400 px-3.5 py-1.5 rounded-full tracking-wider">Privacy Checkup</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-4">Security, Architecture & Privacy FAQ</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 p-6 rounded-2xl">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 font-semibold">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-brand-500"></i>
+                        Where is my spending data saved?
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                        Every single rupee input and transaction you record is saved directly inside your own web browser's storage (<code class="bg-slate-200 dark:bg-slate-700/50 px-1 py-0.5 rounded text-xs font-mono">localStorage</code>). It never travels to any server, third-party trackers, or databases.
+                    </p>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 p-6 rounded-2xl">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 font-semibold">
+                        <i data-lucide="info" class="w-5 h-5 text-brand-500"></i>
+                        Is SpendAI truly free?
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                        Yes, 100% free with absolutely no hidden tiers. Since the application runs completely client-side in your browser, we do not require costly database servers. This enables us to make SpendAI totally free forever.
+                    </p>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 p-6 rounded-2xl">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 font-semibold">
+                        <i data-lucide="zap" class="w-5 h-5 text-brand-500"></i>
+                        How does the smart category suggestion work?
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                        Our instant keyword engine intercepts keys inside the description prompt. Entering words like "Swiggy", "Zomato", or "restaurant" immediately matches "Food & Dining", while terms like "recharge", "Jio", or "Airtel" flags "Mobile Recharge", saving you administrative steps.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-100 dark:bg-[#070d1d] text-slate-500 dark:text-slate-400 py-12 border-t border-slate-200 dark:border-slate-800/70 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold shadow-sm">
+                    <i data-lucide="wallet" class="w-4 h-4"></i>
+                </div>
+                <span class="font-extrabold text-lg bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent font-semibold">SpendAI.online</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold max-w-xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed">
+                Made with ❤️ for Indians who want to track smartly, live debt-free, and grow their savings.
+            </p>
+            <div class="flex justify-center gap-6 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <a href="#" onclick="alert('SpendAI is local-first. No cookies/trackers are utilized.')" class="hover:text-slate-800 dark:hover:text-white transition-colors">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="#" onclick="alert('Disclaimer: SpendAI provides estimation tools. Check with qualified advisors for critical accounting needs.')" class="hover:text-slate-800 dark:hover:text-white transition-colors">Terms of Service</a>
+                <span>&bull;</span>
+                <a href="mailto:support@spendai.online" class="hover:text-slate-800 dark:hover:text-white transition-colors">Support Email</a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
+                &copy; 2026 SpendAI. All rights reserved. Locally persisted in sandbox environment.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE BLOG READING MODAL -->
+    <div id="article-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden transition-all duration-300 opacity-0 scale-95">
+        <div class="bg-white dark:bg-[#1c2541] w-full max-w-2xl rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col max-h-[85vh]">
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-start">
+                <div class="space-y-1">
+                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20 px-2 py-0.5 rounded">Category</span>
+                    <h3 id="modal-title" class="text-xl font-extrabold text-slate-900 dark:text-white mt-1 leading-snug">Article Title</h3>
+                </div>
+                <button onclick="closeArticleModal()" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-slate-200 transition-all">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Content -->
+            <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
+                <!-- Content loaded dynamically via javascript -->
+            </div>
+            <!-- Footer -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center gap-3">
+                <button onclick="closeArticleModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl text-xs flex items-center gap-1 active:scale-[0.97]">
+                    <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                    <span>Back to Academy</span>
+                </button>
+                <div class="flex gap-2">
+                    <button onclick="closeArticleModal()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold rounded-xl text-xs transition-all active:scale-95">
+                        Close
+                    </button>
+                    <a href="#tools-section" onclick="closeArticleModal()" class="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-bold rounded-xl text-xs shadow-md transition-all active:scale-95">
+                        Open Tracker
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS LOGIC CORE -->
+    <script>
+        // State variables
+        let state = {
+            expenses: [],
+            income: 50000,
+            budgetSliders: {
+                needs: 50,
+                wants: 30,
+                savings: 20
+            },
+            goals: [],
+            subscriptions: [],
+            currentTheme: 'dark',
+            activeTab: 'tracker',
+            showAdPreviews: true // Developer Mode Toggle for previewing placeholders
+        };
+
+        // Static categorization keyword mapping
+        const categoryKeywords = {
+            "Groceries": ["groceries", "bigbasket", "blinkit", "zepto", "dmart", "market", "milk", "vegetables", "fruits", "grocery", "sabzi"],
+            "Transport/Petrol": ["petrol", "diesel", "ola", "uber", "bus", "train", "metro", "auto", "cab", "rickshaw", "fuel", "cng", "parking", "toll"],
+            "Rent": ["rent", "pg", "flat", "landlord", "brokerage"],
+            "Utilities": ["electricity", "water", "gas", "bill", "power", "bescom", "tneb", "mseb", "piped gas"],
+            "Food & Dining": ["swiggy", "zomato", "restaurant", "food", "dinner", "lunch", "breakfast", "cafe", "maggi", "chai", "pizza", "burger", "starbucks", "dominos", "kfc", "eats"],
+            "Subscriptions": ["netflix", "prime", "spotify", "hotstar", "youtube", "premium", "sony", "liv", "zee5", "gym", "newsletter"],
+            "Shopping": ["amazon", "flipkart", "myntra", "clothes", "mall", "shopping", "shoes", "ajio", "zara", "h&m", "purchase"],
+            "Mobile Recharge": ["recharge", "jio", "airtel", "vi", "bsnl", "mobile bill", "data addon"],
+            "Health": ["doctor", "medicine", "pharmacy", "hospital", "health", "dental", "clinic", "tests", "pharmeasy", "apollo"],
+            "Education": ["school", "college", "fees", "books", "course", "udemy", "coursera", "stationery", "tuition"],
+            "Entertainment": ["movie", "pvr", "theatre", "gaming", "concert", "clubbing", "beer", "pub", "bowling"],
+            "EMI/Loans": ["emi", "loan", "hdfc", "sbi", "credit card", "mortgage", "car loan", "education loan"]
+        };
+
+        // Sample Data for first-time loaders
+        const defaultExpenses = [
+            { id: 1, amount: 450, description: "Swiggy dinner order", category: "Food & Dining", date: new Date().toISOString().split('T')[0] },
+            { id: 2, amount: 12000, description: "Monthly flat rent share", category: "Rent", date: new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0] },
+            { id: 3, amount: 1250, description: "Blinkit grocery delivery", category: "Groceries", date: new Date(Date.now() - 86400000).toISOString().split('T')[0] },
+            { id: 4, amount: 699, description: "Airtel Fiber Broadband recharge", category: "Mobile Recharge", date: new Date(Date.now() - 259200000).toISOString().split('T')[0] },
+            { id: 5, amount: 500, description: "Petrol fuel up", category: "Transport/Petrol", date: new Date(Date.now() - 345600000).toISOString().split('T')[0] },
+            { id: 6, amount: 299, description: "Netflix Mobile Plan", category: "Subscriptions", date: new Date(Date.now() - 432000000).toISOString().split('T')[0] }
+        ];
+
+        const defaultGoals = [
+            { id: 1, name: "Emergency Fund (6 Months)", target: 120000, current: 45000, duration: 12 },
+            { id: 2, name: "Downpayment for New EV Scooter", target: 80000, current: 20000, duration: 8 }
+        ];
+
+        const defaultSubscriptions = [
+            { id: 1, name: "Netflix Premium Bundle", cost: 649, active: true },
+            { id: 2, name: "Spotify Premium Duo", cost: 149, active: true },
+            { id: 3, name: "Gym Membership", cost: 1500, active: true }
+        ];
+
+        // Custom Static Articles content database (Indian context) - Upgraded to 9 comprehensive high-quality long-form articles
+        const articlesDB = {
+            "cloud-apps": {
+                title: "How to Track Expenses Without Relying on Vulnerable Cloud Apps",
+                category: "Privacy & Tech",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">The Security Illusion of Automated Finance Apps</p>
+                    <p class="mb-4">In today's digital era, almost every popular budgeting application makes a deceptive pitch: "Link your bank accounts, credit cards, and SMS triggers, and let our cloud engines automate your life." While this sounds incredibly convenient, it hides a massive systemic security risk. By sharing your financial OTPs, SMS codes, or login permissions, you expose sensitive credentials to third-party cloud databases. These servers frequently become prime targets for data leaks, advertising profile harvesting, or credentials theft.</p>
+                    
+                    <div class="my-5 bg-emerald-50 dark:bg-emerald-950/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+                        <strong class="text-emerald-600 dark:text-emerald-400 font-bold block mb-2 text-sm">💡 The Local-First Privacy Paradigm:</strong>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">By shifting to local-first, browser-based sandboxes like SpendAI, your private spending logs never touch any remote database. Everything remains strictly encrypted inside your device's web storage sandbox (<code class="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs font-mono font-bold">localStorage</code>). When you close the tab, your data remains fully offline, insulated from corporate eyes.</p>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">A Practical Manual Tracking Routine:</p>
+                    <p class="mb-3">Manual budgeting might feel like extra work, but it actively builds financial mindfulness. When an app automatically logs your expenses, you lose psychological touch with your money. Manual entry forces a brief moment of reflection on every purchasing decision.</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                        <li><strong>Micro-Logging Habit:</strong> Dedicate just 5 seconds right after a Swiggy transaction or a UPI pay-out to punch the numbers into SpendAI.</li>
+                        <li><strong>Perform Weekly CSV Archives:</strong> Every Sunday evening, tap the "Export CSV" tool. Maintain a local folder on your computer's hard drive to archive monthly spreadsheet ledgers.</li>
+                        <li><strong>Standardize Categorization Tags:</strong> Ensure your categories align correctly (e.g. putting tea stall payments under Food & Dining, metro card additions under Transport) to generate highly accurate donut aggregates.</li>
+                    </ul>
+                    <p class="mt-4 font-semibold text-slate-800 dark:text-slate-250">Conclusion:</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Taking control of your wealth starts with taking control of your data. Insulate your household logs from tracking companies, secure your banks, and experience professional-grade local budgeting offline today.</p>
+                `
+            },
+            "money-leaks": {
+                title: "Invisible Money Leaks in Indian Households: Spot and Stop Them",
+                category: "India Finance",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">The Micro-Transaction Bleeding Trap</p>
+                    <p class="mb-4">In Indian households, financial strain is rarely caused by big-ticket luxury purchases. Instead, it is the invisible, recurring micro-transactions that silently bleed budgets. In the era of automated mandates and friction-free digital credit cards, subscriptions auto-renew without any warning. From ₹199 mobile data add-ons to duplicate streaming bundles and unutilized memberships, a typical middle-class professional leaks thousands of rupees monthly without realizing it.</p>
+                    
+                    <div class="my-5 bg-red-50/60 dark:bg-red-950/20 p-5 rounded-2xl border border-red-200/50 dark:border-red-900/50">
+                        <strong class="text-red-650 dark:text-red-400 font-bold block mb-2 text-sm">📉 The Exponential Leak Calculator:</strong>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">An invisible monthly leak of ₹1,500 equates to an annual wastage of ₹18,000. If that same sum were directed into a standard monthly SIP index fund yielding 12%, it would accumulate to nearly ₹1.2 Lakhs in 5 years. Laziness in canceling unutilized subscription mandates is highly expensive.</p>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Where Households Leak Money the Most:</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                        <li><strong>Unused Entertainment Mandates:</strong> Maintaining subscriptions to Netflix, Prime Video, Hotstar, and SonyLIV simultaneously when you only watch one show per month.</li>
+                        <li><strong>Duplicate App Bundles:</strong> Paying ₹149 for standalone Spotify Premium when your broadband provider already bundles free music streaming.</li>
+                        <li><strong>Forgotten Trial Renewals:</strong> Signing up for 1-month international utility trials and forgetting to drop the card mandate before the dollar conversions trigger.</li>
+                        <li><strong>Micro-grocery Delivery Passes:</strong> Grocery delivery services charge monthly flat passes for "free shipping." If you only order twice a month, the pass cost exceeds the individual delivery charges.</li>
+                    </ul>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">How to Perform a Quarterly Audit:</p>
+                    <p class="text-xs mb-3 text-slate-500 dark:text-slate-400">Download your bank statement or UPI statement in Excel format. Highlight every recurring debit. If you haven't opened the associated app or visited the gym in the last 30 days, immediately log into your banking app and revoke the e-mandate.</p>
+                `
+            },
+            "save-five-thousand": {
+                title: "How to Save Up to ₹5,000+ Every Single Month Without Sacrificing Your Lifestyle",
+                category: "Smart Saving",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">Practical Optimization Over Extreme Frugality</p>
+                    <p class="mb-4">Many personal finance guides offer advice that is hard to sustain, like "stop drinking coffee" or "never eat out." However, sustainable saving is not about depriving yourself. It is about auditing structural inefficiencies in your regular monthly bills to unlock extra cash with minimal lifestyle impact.</p>
+                    
+                    <div class="my-5 bg-amber-50 dark:bg-amber-950/20 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/50">
+                        <strong class="text-amber-700 dark:text-amber-400 font-bold block mb-2 text-sm">💡 Quick Wins to Reclaim ₹5,000 Monthly:</strong>
+                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                            <li><strong>UPI Subscription Consolidation (Saves ~₹1,500):</strong> Bundle your streaming platforms into single annual broadband packages or family plans.</li>
+                            <li><strong>Smart Commuting Shift (Saves ~₹2,000):</strong> Swap three prime-time cab rides per week for the local metro or auto-pool alternatives.</li>
+                            <li><strong>Limit Convenience Ordering (Saves ~₹1,500):</strong> Order directly from local restaurants instead of using food delivery apps. Cabs, delivery fees, and platform markups add 30-40% to your bill.</li>
+                        </ul>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Tackling Utility and Shopping Leaks:</p>
+                    <p class="text-xs leading-relaxed mb-3 text-slate-500 dark:text-slate-400">
+                        Small adjustments in your home can yield surprising savings. Setting your air conditioner to 24°C instead of 18°C can reduce your summer electricity bills by up to 15%. Additionally, waiting 48 hours before purchasing items in your shopping cart helps prevent impulse buys, keeping your money where it belongs: in your savings.
+                    </p>
+                `
+            },
+            "credit-emi": {
+                title: "Mastering Credit Cards & EMIs in India: Leverage Cards to Build Wealth",
+                category: "Credit & EMIs",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">The Psychology of Frictionless Debt</p>
+                    <p class="mb-4">Credit cards are often portrayed as financial traps. While they can lead to debt if misused, when managed correctly they are powerful tools to build your credit score, earn reward points, and maintain interest-free short-term liquidity. The challenge is navigating the psychology of frictionless spending, where paying with credit feels less real than using cash or UPI.</p>
+                    
+                    <div class="my-5 bg-red-50/60 dark:bg-red-955/20 p-5 rounded-2xl border border-red-200/50 dark:border-red-900/50">
+                        <strong class="text-red-655 dark:text-red-400 font-bold block mb-2 text-sm">⚠️ The Interest-Free Myth:</strong>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">A 45-day interest-free window is highly useful, but missing your payment deadline by even one day triggers steep interest rates of 36% to 42% per annum, calculated from the transaction date. Paying only the "Minimum Due" is a recipe for a debt spiral.</p>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Smart Credit Guidelines for Indian Earners:</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                        <li><strong>Always Pay the Total Due:</strong> Never roll over balances. Set up automatic full payment mandates to avoid missed deadlines.</li>
+                        <li><strong>Beware of 'No-Cost' EMIs:</strong> These often include hidden processing charges, and you lose the discount benefits usually available for full cash payments.</li>
+                        <li><strong>Maintain Credit Utilization Below 30%:</strong> Utilizing more than 30% of your total credit limit can signal high debt dependency, negatively affecting your CIBIL score.</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Rule of thumb: If you don't have the cash in your bank account to buy it today, do not put it on a credit card under the assumption that next month's salary will cover it.</p>
+                `
+            },
+            "emergency-fund": {
+                title: "How to Build a Bulletproof Emergency Fund in India (2026)",
+                category: "Milestones",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">Why You Need an Emergency Fund Today</p>
+                    <p class="mb-4">With shifting job markets, rising healthcare costs, and global inflation, an emergency fund is your most important financial safety net. It protects you from having to sell long-term mutual funds or take on high-interest personal loans when unexpected expenses arise. An emergency fund is not an investment designed to beat the market; it is financial insurance for your peace of mind.</p>
+                    
+                    <div class="my-5 bg-brand-55 dark:bg-brand-950/20 p-5 rounded-2xl border border-brand-200/50 dark:border-brand-900/50">
+                        <strong class="text-brand-600 dark:text-brand-400 font-bold block mb-2 text-sm">💼 Sizing Your Safety Net:</strong>
+                        <p class="text-xs leading-relaxed text-slate-705 dark:text-slate-350">Aim to save 6 months' worth of essential living expenses (Rent, EMIs, food, utilities, and insurance premiums). If your monthly essentials total ₹40,000, your target fund should be ₹2.4 Lakhs.</p>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Where to Park Your Fund Safely:</p>
+                    <p class="mb-3 text-xs text-slate-650 dark:text-slate-405 leading-relaxed">Safety and liquidity are more important than high returns for this fund. Do not lock this money in volatile stocks or long-term lock-in assets.</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                        <li><strong>Sweep-in Fixed Deposits:</strong> Linked to your primary savings account, sweep-in FDs earn higher interest while keeping funds immediately accessible via ATM.</li>
+                        <li><strong>High-Interest Savings Accounts:</strong> Park a portion in reliable banking institutions offering 5-6% yields on daily balances.</li>
+                        <li><strong>Liquid Mutual Funds:</strong> These low-risk funds offer redemption within 24 hours, making them a great option for the second half of your safety net.</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 dark:text-slate-450 italic">
+                        Tip: Set up a dedicated savings account solely for your emergency fund, and do not link it to daily UPI apps. If it is hard to spend, it is easy to save.
+                    </p>
+                `
+            },
+            "track-upi-cash": {
+                title: "Best Ways to Track UPI & Cash Expenses Together Seamlessly",
+                category: "Transaction Tracking",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">The UPI Micro-Transaction Challenge</p>
+                    <p class="mb-4">UPI has transformed how we pay in India, making cash almost obsolete in cities. However, this convenience introduces a new challenge: "micro-transaction clutter." Making multiple daily UPI payments for ₹10 tea, ₹50 auto rides, and ₹100 groceries quickly clogs bank statements. This makes it difficult to see where your money is actually going at the end of the month.</p>
+                    
+                    <div class="my-5 bg-accent-50 dark:bg-accent-950/20 p-5 rounded-2xl border border-accent-100 dark:border-accent-900/50">
+                        <strong class="text-accent-600 dark:text-accent-400 font-bold block mb-2 text-sm">📈 The Clutter Effect:</strong>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">A bank statement filled with hundreds of small UPI payments makes manual categorization tedious, leading to budgeting fatigue. Tracking cash withdrawals alongside micro UPI payments is key to maintaining a clear financial picture.</p>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Effective Strategies for Consolidated Tracking:</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-655 dark:text-slate-400 mb-4">
+                        <li><strong>Use UPI Lite for Micro-payments:</strong> Keep small payments under ₹200 inside UPI Lite. It acts as an offline wallet, preventing small transactions from cluttering your bank statement.</li>
+                        <li><strong>Track Cash Withdrawals as Expenses:</strong> When you withdraw cash, log the full amount under "Miscellaneous" or "Cash Reserves" immediately, rather than trying to track every individual paper note later.</li>
+                        <li><strong>Weekly Aggregation:</strong> Spend just 5 minutes every Sunday review and logging your larger UPI payments. SpendAI's auto-suggestion keyword filters can help speed up this process.</li>
+                    </ul>
+                `
+            },
+            "budget-mistakes": {
+                title: "Common Budgeting Mistakes Most Indians Make (And How to Prevent Them)",
+                category: "Mistakes Audit",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">Are You Budgeting Backwards?</p>
+                    <p class="mb-4">Many people run their finances backwards by defining savings as "whatever is left at the end of the month." If you spend first and save what remains, you will rarely save anything. The key shift is prioritizing savings first, and then managing your lifestyle expenses with the remainder.</p>
+                    
+                    <div class="my-5 bg-emerald-50 dark:bg-emerald-950/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+                        <strong class="text-emerald-600 dark:text-emerald-400 font-bold block mb-2 text-sm">⚠️ Structural Mistakes to Avoid:</strong>
+                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                            <li><strong>Ignoring Irregular Annual Expenses:</strong> Annual payments like car insurance or school fees can disrupt your budget if you don't plan ahead for them.</li>
+                            <li><strong>Underestimating Convenience Costs:</strong> Small convenience fees from delivery apps and quick commerce portals can quietly add up to thousands of rupees over time.</li>
+                            <li><strong>Impulse Buying via EMI:</strong> Relying on low-cost EMIs to purchase lifestyle goods can stretch your cash flow thin.</li>
+                        </ul>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">How to Correct the Flow:</p>
+                    <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                        Automate your savings at the start of the month, plan for annual expenses by saving for them incrementally each month, and keep convenience orders in check by tracking them diligently.
+                    </p>
+                `
+            },
+            "salary-50-30-20": {
+                title: "How to Use the 50/30/20 Rule Effectively in Indian Cities",
+                category: "Salaried Guides",
+                content: `
+                    <p class="font-semibold text-slate-800 dark:text-slate-100 text-base mb-3">Adapting Western Guidelines to the Indian Economy</p>
+                    <p class="mb-4">The 50/30/20 rule is a widely recommended financial guideline, but applying it rigidly in high-rent Indian cities like Mumbai, Bengaluru, or Gurgaon can be challenging. Rent and transportation costs in these metros can easily take up a large share of a starting salary, requiring some adjustments to the standard percentages.</p>
+                    
+                    <div class="my-5 bg-amber-50 dark:bg-amber-955/20 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/50">
+                        <strong class="text-amber-705 dark:text-amber-400 font-bold block mb-2 text-sm">💼 Tailoring Allocations by Salary Bracket:</strong>
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                            <li><strong>Starting Salary (₹30,000):</strong> Rents in Tier-1 cities can be high. Consider adjusting your allocation to <strong>60% Needs, 20% Wants, and 20% Savings</strong> until your income grows.</li>
+                            <li><strong>Mid-Level Salary (₹75,000):</strong> A balanced salary allows you to align closely with the classic <strong>50% Needs, 30% Wants, and 20% Savings</strong> framework.</li>
+                            <li><strong>Senior Level Salary (₹1,50,000+):</strong> Take advantage of higher income to accelerate your financial freedom by shifting to <strong>40% Needs, 20% Wants, and 40% Savings</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">The Rent Heuristic:</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        To keep your budget balanced in expensive cities, try to keep your rent under 25-30% of your take-home pay. If rent exceeds this threshold, you will likely need to adjust your discretionary spending (Wants) to protect your savings rate.
+                    </p>
+                `
+            }
+        };
+
+        // Chart instance
+        let spendingChartInstance = null;
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load state from localStorage or seed defaults
+            loadState();
+            
+            // Render Lucide Icons
+            lucide.createIcons();
+
+            // Set current date in expense picker
+            document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
+
+            // Render Tools
+            renderAll();
+
+            // Run Startup Health Diagnostics Console logs
+            runStartupDiagnostics();
+        });
+
+        // Load State from localStorage
+        function loadState() {
+            const localData = localStorage.getItem('spendai_data');
+            if (localData) {
+                try {
+                    state = JSON.parse(localData);
+                    // Ensure all properties exist
+                    if (!state.expenses) state.expenses = [];
+                    if (!state.income) state.income = 50000;
+                    if (!state.budgetSliders) state.budgetSliders = { needs: 50, wants: 30, savings: 20 };
+                    if (!state.goals) state.goals = [];
+                    if (!state.subscriptions) state.subscriptions = [];
+                    if (!state.currentTheme) state.currentTheme = 'dark';
+                    if (!state.activeTab) state.activeTab = 'tracker';
+                    if (state.showAdPreviews === undefined) state.showAdPreviews = true;
+                } catch (e) {
+                    console.error("Error loading localStorage, seeding default setup.", e);
+                    seedDefaults();
+                }
+            } else {
+                seedDefaults();
+            }
+
+            // Theme sync
+            syncTheme();
+            
+            // Sync Ad preview visuals
+            syncAdPreviews();
+
+            // Set budget input value
+            document.getElementById('budget-income').value = state.income;
+            document.getElementById('slider-needs').value = state.budgetSliders.needs;
+            document.getElementById('slider-wants').value = state.budgetSliders.wants;
+            document.getElementById('slider-savings').value = state.budgetSliders.savings;
+
+            document.getElementById('pct-needs-label').innerText = `${state.budgetSliders.needs}%`;
+            document.getElementById('pct-wants-label').innerText = `${state.budgetSliders.wants}%`;
+            document.getElementById('pct-savings-label').innerText = `${state.budgetSliders.savings}%`;
+        }
+
+        // Seed Default setup
+        function seedDefaults() {
+            state.expenses = [...defaultExpenses];
+            state.goals = [...defaultGoals];
+            state.subscriptions = [...defaultSubscriptions];
+            state.income = 50000;
+            state.budgetSliders = { needs: 50, wants: 30, savings: 20 };
+            state.currentTheme = 'dark';
+            state.activeTab = 'tracker';
+            state.showAdPreviews = true;
+            saveState();
+        }
+
+        // Save State
+        function saveState() {
+            localStorage.setItem('spendai_data', JSON.stringify(state));
+        }
+
+        // Run Startup Diagnostics Health Checks
+        function runStartupDiagnostics() {
+            console.log("%c🚀 SpendAI Core Diagnostics initialized successfully!", "color: #22c55e; font-weight: bold; font-size: 13px;");
+            try {
+                const totalBytes = JSON.stringify(state).length;
+                console.log(`📊 LocalStorage Payload: ${(totalBytes / 1024).toFixed(3)} KB / 5120.00 KB`);
+                console.log(`✅ Loaded State Summary: ${state.expenses.length} transaction entries, ${state.goals.length} life milestones, ${state.subscriptions.length} active bills.`);
+            } catch (e) {
+                console.warn("Could not calculate diagnostics size context.", e);
+            }
+        }
+
+        // Theme handlers
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            state.currentTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
+            saveState();
+            syncTheme();
+            // Re-render chart since gridline color options shift
+            renderChart();
+        });
+
+        function syncTheme() {
+            if (state.currentTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // Ad preview switch logic
+        function toggleAdPreviews() {
+            state.showAdPreviews = !state.showAdPreviews;
+            saveState();
+            syncAdPreviews();
+        }
+
+        function syncAdPreviews() {
+            const eyeOn = document.querySelector('.ad-eye-on');
+            const eyeOff = document.querySelector('.ad-eye-off');
+            const adSlots = document.querySelectorAll('.ad-slot-container');
+
+            if (state.showAdPreviews) {
+                adSlots.forEach(el => el.classList.remove('hidden'));
+                eyeOn.classList.remove('hidden');
+                eyeOn.classList.add('block');
+                eyeOff.classList.remove('block');
+                eyeOff.classList.add('hidden');
+            } else {
+                adSlots.forEach(el => el.classList.add('hidden'));
+                eyeOn.classList.remove('block');
+                eyeOn.classList.add('hidden');
+                eyeOff.classList.remove('hidden');
+                eyeOff.classList.add('block');
+            }
+        }
+
+        // Mobile Menu Toggler
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dynamic Router tabs
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            saveState();
+
+            // Handle panel displays
+            const tabs = ['tracker', 'planner', 'savings', 'subscription'];
+            tabs.forEach(tab => {
+                const pane = document.getElementById(`tab-content-${tab}`);
+                const btn = document.getElementById(`tab-btn-${tab}`);
+                if (tab === tabId) {
+                    pane.classList.remove('hidden');
+                    pane.classList.add('block');
+                    btn.classList.add('bg-white', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+                    btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+                } else {
+                    pane.classList.remove('block');
+                    pane.classList.add('hidden');
+                    btn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+                    btn.classList.add('text-slate-600', 'dark:text-slate-400');
+                }
+            });
+
+            // Re-render tab dependencies
+            if (tabId === 'tracker') {
+                renderExpenses();
+            } else if (tabId === 'planner') {
+                calculateBudgetAllocation();
+            } else if (tabId === 'savings') {
+                renderGoals();
+            } else if (tabId === 'subscription') {
+                renderSubscriptions();
+            }
+        }
+
+        // --- SECTION A: EXPENSE TRACKER JS LOGIC ---
+
+        // Auto suggestion matches
+        function autoSuggestCategory(text) {
+            const desc = text.toLowerCase().trim();
+            const badge = document.getElementById('suggest-badge');
+            const catSelect = document.getElementById('expense-category');
+
+            if (!desc) {
+                badge.classList.add('hidden');
+                return;
+            }
+
+            for (const [category, keywords] of Object.entries(categoryKeywords)) {
+                for (const keyword of keywords) {
+                    if (desc.includes(keyword)) {
+                        catSelect.value = category;
+                        badge.classList.remove('hidden');
+                        return;
+                    }
+                }
+            }
+            // Hide badge if no suggestion matched
+            badge.classList.add('hidden');
+        }
+
+        // Form Submit
+        function handleExpenseSubmit(event) {
+            event.preventDefault();
+            const idInput = document.getElementById('expense-edit-id').value;
+            const amount = parseFloat(document.getElementById('expense-amount').value);
+            const description = document.getElementById('expense-description').value.trim();
+            const category = document.getElementById('expense-category').value;
+            const date = document.getElementById('expense-date').value;
+
+            if (idInput) {
+                // Edit existing
+                const index = state.expenses.findIndex(e => e.id == idInput);
+                if (index !== -1) {
+                    state.expenses[index] = { id: parseInt(idInput), amount, description, category, date };
+                }
+            } else {
+                // Create new
+                const newExpense = {
+                    id: Date.now(),
+                    amount,
+                    description,
+                    category,
+                    date
+                };
+                state.expenses.unshift(newExpense);
+            }
+
+            saveState();
+            resetExpenseForm();
+            renderAll();
+        }
+
+        // Reset Expense Form
+        function resetExpenseForm() {
+            document.getElementById('expense-form').reset();
+            document.getElementById('expense-edit-id').value = '';
+            document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('suggest-badge').classList.add('hidden');
+            
+            document.getElementById('expense-form-title').innerHTML = `<i data-lucide="plus-circle" class="w-5 h-5 text-brand-500"></i> Add New Expense`;
+            document.getElementById('submit-btn-text').innerText = "Add Expense";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+            
+            lucide.createIcons();
+        }
+
+        // Fill Form for editing
+        function editExpense(id) {
+            const expense = state.expenses.find(e => e.id === id);
+            if (!expense) return;
+
+            document.getElementById('expense-edit-id').value = expense.id;
+            document.getElementById('expense-amount').value = expense.amount;
+            document.getElementById('expense-description').value = expense.description;
+            document.getElementById('expense-category').value = expense.category;
+            document.getElementById('expense-date').value = expense.date;
+
+            document.getElementById('expense-form-title').innerHTML = `<i data-lucide="edit-3" class="w-5 h-5 text-accent-500"></i> Edit Expense Ledger`;
+            document.getElementById('submit-btn-text').innerText = "Update Expense";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            
+            // Scroll to form smoothly on mobile
+            document.getElementById('expense-form-title').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            lucide.createIcons();
+        }
+
+        // Delete Expense
+        function deleteExpense(id) {
+            if (confirm("Are you sure you want to delete this expense transaction?")) {
+                state.expenses = state.expenses.filter(e => e.id !== id);
+                saveState();
+                renderAll();
+            }
+        }
+
+        // Clear All Data
+        function clearAllExpenses() {
+            if (confirm("🚨 WARNING: This will completely delete all locally saved expenses, budget allocations, subscriptions and goals! This action is permanent. Do you want to continue?")) {
+                localStorage.removeItem('spendai_data');
+                state.expenses = [];
+                state.goals = [];
+                state.subscriptions = [];
+                state.income = 50000;
+                state.budgetSliders = { needs: 50, wants: 30, savings: 20 };
+                saveState();
+                resetExpenseForm();
+                renderAll();
+            }
+        }
+
+        // Populate dynamic months in filter
+        function populateFilterMonths() {
+            const filterMonthSelect = document.getElementById('filter-month');
+            const prevVal = filterMonthSelect.value;
+            
+            // Reset options except the first "All Months"
+            filterMonthSelect.innerHTML = '<option value="all">All Months</option>';
+
+            const dates = state.expenses.map(e => e.date);
+            const monthsSet = new Set();
+            
+            dates.forEach(dStr => {
+                if (dStr) {
+                    const parts = dStr.split('-');
+                    if (parts.length >= 2) {
+                        const yearMonth = `${parts[0]}-${parts[1]}`; // YYYY-MM
+                        monthsSet.add(yearMonth);
+                    }
+                }
+            });
+
+            // Convert to array and sort descending
+            const sortedMonths = Array.from(monthsSet).sort().reverse();
+            
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            sortedMonths.forEach(ym => {
+                const [year, month] = ym.split('-');
+                const monthName = monthNames[parseInt(month) - 1];
+                const option = document.createElement('option');
+                option.value = ym;
+                option.innerText = `${monthName} ${year}`;
+                filterMonthSelect.appendChild(option);
+            });
+
+            // Restore previous selection if valid
+            if (Array.from(filterMonthSelect.options).some(opt => opt.value === prevVal)) {
+                filterMonthSelect.value = prevVal;
+            }
+        }
+
+        // Render Expense Ledger Table
+        function renderExpenses() {
+            const tableBody = document.getElementById('expenses-table-body');
+            const selectedMonth = document.getElementById('filter-month').value;
+            const selectedCategory = document.getElementById('filter-category').value;
+            const searchQuery = document.getElementById('search-description').value.toLowerCase().trim();
+
+            tableBody.innerHTML = '';
+
+            let filtered = state.expenses;
+
+            // Filter Month
+            if (selectedMonth !== 'all') {
+                filtered = filtered.filter(e => e.date.startsWith(selectedMonth));
+            }
+
+            // Filter Category
+            if (selectedCategory !== 'all') {
+                filtered = filtered.filter(e => e.category === selectedCategory);
+            }
+
+            // Filter Search Description
+            if (searchQuery) {
+                filtered = filtered.filter(e => e.description.toLowerCase().includes(searchQuery));
+            }
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="py-8 text-center text-slate-400 dark:text-slate-500 font-semibold">
+                            <i data-lucide="inbox" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
+                            No transaction data maps onto active filters.
+                        </td>
+                    </tr>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.forEach(e => {
+                const dateObj = new Date(e.date);
+                const formattedDate = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b border-slate-100 dark:border-slate-800/60";
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 font-semibold text-slate-500 dark:text-slate-400">${formattedDate}</td>
+                    <td class="py-3.5 px-4">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-805 dark:text-slate-300 border border-slate-200/30 dark:border-slate-700/30">
+                            ${getCategoryEmoji(e.category)} ${e.category}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 font-bold text-slate-800 dark:text-slate-200 truncate max-w-[180px]" title="${e.description}">${e.description}</td>
+                    <td class="py-3.5 px-4 text-right font-black text-slate-900 dark:text-white">₹${e.amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+                    <td class="py-3.5 px-4 text-center">
+                        <div class="inline-flex items-center gap-2">
+                            <button onclick="editExpense(${e.id})" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all hover:scale-105 active:scale-[0.97]" title="Edit Transaction">
+                                <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteExpense(${e.id})" class="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 dark:bg-red-955/20 dark:hover:bg-red-900/20 text-red-650 dark:text-red-400 transition-all hover:scale-105 active:scale-[0.97]" title="Delete Transaction">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Return Emojis for categories
+        function getCategoryEmoji(category) {
+            const emojis = {
+                "Groceries": "🥬",
+                "Transport/Petrol": "⛽",
+                "Rent": "🏠",
+                "Utilities": "💡",
+                "Food & Dining": "🍔",
+                "Subscriptions": "📺",
+                "Shopping": "🛍️",
+                "Mobile Recharge": "📱",
+                "Health": "⚕️",
+                "Education": "🎓",
+                "Entertainment": "🎬",
+                "EMI/Loans": "💸",
+                "Misc": "📦"
+            };
+            return emojis[category] || "💸";
+        }
+
+        // Aggregate statistics cards
+        function updateSummaryCards() {
+            // Total spent
+            const total = state.expenses.reduce((acc, curr) => acc + curr.amount, 0);
+            document.getElementById('stat-total-spent').innerText = `₹${total.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+            // Spent this month
+            const currentYearMonth = new Date().toISOString().substring(0, 7); // YYYY-MM
+            const monthTotal = state.expenses
+                .filter(e => e.date.startsWith(currentYearMonth))
+                .reduce((acc, curr) => acc + curr.amount, 0);
+            document.getElementById('stat-month-spent').innerText = `₹${monthTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+            // Transaction Count
+            document.getElementById('stat-count').innerText = state.expenses.length;
+        }
+
+        // Render Chart.js Spending Breakdown
+        function renderChart() {
+            const canvas = document.getElementById('spending-chart');
+            const placeholder = document.getElementById('chart-placeholder');
+            
+            // Build current filters category aggregation
+            const selectedMonth = document.getElementById('filter-month').value;
+            const selectedCategory = document.getElementById('filter-category').value;
+            const searchQuery = document.getElementById('search-description').value.toLowerCase().trim();
+
+            let filtered = state.expenses;
+
+            if (selectedMonth !== 'all') {
+                filtered = filtered.filter(e => e.date.startsWith(selectedMonth));
+            }
+            if (selectedCategory !== 'all') {
+                filtered = filtered.filter(e => e.category === selectedCategory);
+            }
+            if (searchQuery) {
+                filtered = filtered.filter(e => e.description.toLowerCase().includes(searchQuery));
+            }
+
+            if (filtered.length === 0) {
+                canvas.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                if (spendingChartInstance) {
+                    spendingChartInstance.destroy();
+                    spendingChartInstance = null;
+                }
+                return;
+            }
+
+            canvas.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+
+            // Aggregate values by category
+            const aggregates = {};
+            filtered.forEach(e => {
+                aggregates[e.category] = (aggregates[e.category] || 0) + e.amount;
+            });
+
+            const labels = Object.keys(aggregates);
+            const data = Object.values(aggregates);
+
+            const isDark = state.currentTheme === 'dark';
+            const textColor = isDark ? '#cbd5e1' : '#475569';
+
+            // High aesthetic design colors for chart
+            const borderColors = isDark ? '#1c2541' : '#ffffff';
+            const colorPalette = [
+                '#22c55e', // Groceries (Emerald)
+                '#3b82f6', // Petrol (Blue)
+                '#a855f7', // Rent (Purple)
+                '#f59e0b', // Utilities (Amber)
+                '#ef4444', // Food (Red)
+                '#06b6d4', // Subscriptions (Cyan)
+                '#ec4899', // Shopping (Pink)
+                '#14b8a6', // Mobile Recharge (Teal)
+                '#f43f5e', // Health (Rose)
+                '#84cc16', // Education (Lime)
+                '#6366f1', // Entertainment (Indigo)
+                '#e2e8f0', // EMI/Loans (Slate)
+                '#94a3b8'  // Misc
+            ];
+
+            if (spendingChartInstance) {
+                // Safely destroy before redrawing to guarantee zero memory leaks
+                spendingChartInstance.destroy();
+            }
+            
+            spendingChartInstance = new Chart(canvas, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colorPalette,
+                        borderColor: borderColors,
+                        borderWidth: 2,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 15,
+                                color: textColor,
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    size: 11,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const sum = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const value = context.raw;
+                                    const percentage = ((value / sum) * 100).toFixed(1);
+                                    return ` ₹${value.toLocaleString('en-IN')} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Export Expenses to CSV File
+        function exportExpensesToCSV() {
+            if (state.expenses.length === 0) {
+                alert("Nothing to export yet. Please seed or add expense transaction logs!");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "ID,Date,Category,Description,Amount (INR)\n";
+
+            state.expenses.forEach(e => {
+                const row = [
+                    e.id,
+                    `"${e.date}"`,
+                    `"${e.category}"`,
+                    `"${e.description.replace(/"/g, '""')}"`,
+                    e.amount
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `SpendAI_Ledger_Export_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- SECTION B: BUDGET PLANNER LOGIC ---
+
+        function handleSliderChange(sliderId) {
+            const needs = parseInt(document.getElementById('slider-needs').value);
+            const wants = parseInt(document.getElementById('slider-wants').value);
+            const savings = parseInt(document.getElementById('slider-savings').value);
+
+            // Dynamically update labels
+            document.getElementById('pct-needs-label').innerText = `${needs}%`;
+            document.getElementById('pct-wants-label').innerText = `${wants}%`;
+            document.getElementById('pct-savings-label').innerText = `${savings}%`;
+
+            const sum = needs + wants + savings;
+            const warningBox = document.getElementById('percentage-total-warning');
+            const totalSumEl = document.getElementById('total-percentage-sum');
+
+            if (sum !== 100) {
+                warningBox.classList.remove('hidden');
+                totalSumEl.innerText = `${sum}%`;
+            } else {
+                warningBox.classList.add('hidden');
+                // Save customized percentage allocations to state
+                state.budgetSliders.needs = needs;
+                state.budgetSliders.wants = wants;
+                state.budgetSliders.savings = savings;
+                saveState();
+            }
+
+            calculateBudgetAllocation();
+        }
+
+        // Calculate limits and map comparison tracking limits
+        function calculateBudgetAllocation() {
+            const incomeVal = parseFloat(document.getElementById('budget-income').value) || 0;
+            state.income = incomeVal;
+            saveState();
+
+            // Custom percentages
+            const needsPct = state.budgetSliders.needs;
+            const wantsPct = state.budgetSliders.wants;
+            const savingsPct = state.budgetSliders.savings;
+
+            // Allocation caps
+            const needsLimit = (incomeVal * needsPct) / 100;
+            const wantsLimit = (incomeVal * wantsPct) / 100;
+            const savingsLimit = (incomeVal * savingsPct) / 100;
+
+            document.getElementById('val-needs').innerText = `₹${needsLimit.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+            document.getElementById('val-wants').innerText = `₹${wantsLimit.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+            document.getElementById('val-savings').innerText = `₹${savingsLimit.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+            // Categorize current month expenses to compare limit categories
+            const currentYearMonth = new Date().toISOString().substring(0, 7); // YYYY-MM
+            let actualNeedsSpent = 0;
+            let actualWantsSpent = 0;
+            let actualSavingsGoalInvested = 0;
+
+            const needsCategoriesList = ["Rent", "Utilities", "Groceries", "EMI/Loans", "Health", "Education"];
+            const wantsCategoriesList = ["Food & Dining", "Shopping", "Mobile Recharge", "Entertainment", "Subscriptions", "Misc"];
+
+            state.expenses.forEach(e => {
+                if (e.date.startsWith(currentYearMonth)) {
+                    if (needsCategoriesList.includes(e.category)) {
+                        actualNeedsSpent += e.amount;
+                    } else if (wantsCategoriesList.includes(e.category)) {
+                        actualWantsSpent += e.amount;
+                    }
+                }
+            });
+
+            // Map current goals already saved as actual investments
+            state.goals.forEach(g => {
+                actualSavingsGoalInvested += g.current;
+            });
+
+            const needsVsLabel = document.getElementById('actual-needs-vs');
+            const wantsVsLabel = document.getElementById('actual-wants-vs');
+            const savingsVsLabel = document.getElementById('actual-savings-vs');
+
+            // Format UI Comparison lines
+            needsVsLabel.innerText = `Spent This Month: ₹${actualNeedsSpent.toLocaleString('en-IN', { minimumFractionDigits: 2 })} (${((actualNeedsSpent / (needsLimit || 1)) * 100).toFixed(0)}%)`;
+            wantsVsLabel.innerText = `Spent This Month: ₹${actualWantsSpent.toLocaleString('en-IN', { minimumFractionDigits: 2 })} (${((actualWantsSpent / (wantsLimit || 1)) * 100).toFixed(0)}%)`;
+            savingsVsLabel.innerText = `Total Saved Portfolio: ₹${actualSavingsGoalInvested.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+            // Alert overspend indicators
+            const alertBox = document.getElementById('overspend-alert-box');
+            const alertText = document.getElementById('overspend-alert-text');
+            
+            let isOverspending = false;
+            let warnings = [];
+
+            if (actualNeedsSpent > needsLimit && needsLimit > 0) {
+                isOverspending = true;
+                warnings.push("Needs");
+            }
+            if (actualWantsSpent > wantsLimit && wantsLimit > 0) {
+                isOverspending = true;
+                warnings.push("Wants");
+            }
+
+            if (isOverspending) {
+                alertBox.classList.remove('hidden');
+                alertText.innerText = `You have exceeded your monthly recommendations limit bounds in Category blocks: [${warnings.join(" & ")}]. Trim back on unnecessary bills or adjust percentage allowances.`;
+            } else {
+                alertBox.classList.add('hidden');
+            }
+        }
+
+        // --- SECTION C: SAVINGS GOAL CALCULATOR LOGIC ---
+
+        function handleGoalSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('goal-name').value.trim();
+            const target = parseFloat(document.getElementById('goal-target').value);
+            const current = parseFloat(document.getElementById('goal-current').value) || 0;
+            const duration = parseInt(document.getElementById('goal-duration').value);
+
+            const newGoal = {
+                id: Date.now(),
+                name,
+                target,
+                current,
+                duration
+            };
+
+            state.goals.push(newGoal);
+            saveState();
+            
+            document.getElementById('goal-form').reset();
+            renderGoals();
+        }
+
+        function deleteGoal(id) {
+            if (confirm("Are you sure you want to delete this savings goal milestone?")) {
+                state.goals = state.goals.filter(g => g.id !== id);
+                saveState();
+                renderGoals();
+            }
+        }
+
+        function adjustGoalSaved(id) {
+            const amountStr = prompt("Enter additional amount to save (₹) or subtract by prefixing a minus sign:");
+            const amount = parseFloat(amountStr);
+            if (isNaN(amount)) return;
+
+            const goal = state.goals.find(g => g.id === id);
+            if (goal) {
+                goal.current = Math.max(0, goal.current + amount);
+                saveState();
+                renderGoals();
+                calculateBudgetAllocation(); // Update dynamic values inside budget comparison
+            }
+        }
+
+        // Render Goals Container list
+        function renderGoals() {
+            const container = document.getElementById('goals-container');
+            container.innerHTML = '';
+
+            if (state.goals.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 text-slate-400 dark:text-slate-500">
+                        <i data-lucide="compass" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
+                        <p class="text-sm font-semibold">No active milestone trackers found. Add one on the left!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            state.goals.forEach(g => {
+                const percent = Math.min(100, Math.max(0, (g.current / g.target) * 100)).toFixed(0);
+                const remaining = Math.max(0, g.target - g.current);
+                
+                // Monthly amount needed
+                const monthlyNeeded = (remaining / g.duration).toFixed(2);
+
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 p-5 rounded-2xl space-y-4 shadow-sm transition-all hover:border-slate-300 dark:hover:border-slate-700";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">${g.name}</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Timeline: ${g.duration} Months left</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="adjustGoalSaved(${g.id})" class="inline-flex items-center gap-1 bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/20 dark:hover:bg-brand-900/30 text-brand-600 dark:text-brand-400 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all active:scale-[0.97]">
+                                <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Add Funds
+                            </button>
+                            <button onclick="deleteGoal(${g.id})" class="text-slate-400 hover:text-red-500 p-1.5 transition-colors">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-slate-500 dark:text-slate-400">Progress (${percent}%)</span>
+                            <span class="text-slate-800 dark:text-slate-200">₹${g.current.toLocaleString('en-IN')} / ₹${g.target.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                            <div class="bg-gradient-to-r from-brand-500 to-accent-600 h-2.5 rounded-full" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics bottom info -->
+                    <div class="flex flex-wrap justify-between items-center text-xs font-bold text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800 gap-2">
+                        <span>Remaining: <strong class="text-slate-800 dark:text-slate-200">₹${remaining.toLocaleString('en-IN')}</strong></span>
+                        <span class="bg-brand-100 dark:bg-brand-950/40 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded text-[10px] uppercase">
+                            Need ₹${parseFloat(monthlyNeeded).toLocaleString('en-IN')}/Month
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // --- SECTION D: SUBSCRIPTION AUDITOR LOGIC ---
+
+        function handleSubscriptionSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('sub-name').value.trim();
+            const cost = parseFloat(document.getElementById('sub-cost').value);
+
+            const newSub = {
+                id: Date.now(),
+                name,
+                cost,
+                active: true
+            };
+
+            state.subscriptions.push(newSub);
+            saveState();
+
+            document.getElementById('subscription-form').reset();
+            renderSubscriptions();
+        }
+
+        function toggleSubscriptionStatus(id) {
+            const sub = state.subscriptions.find(s => s.id === id);
+            if (sub) {
+                sub.active = !sub.active;
+                saveState();
+                renderSubscriptions();
+            }
+        }
+
+        // Delete Subscription
+        function deleteSubscription(id) {
+            if (confirm("Are you sure you want to remove this subscription from tracker lists?")) {
+                state.subscriptions = state.subscriptions.filter(s => s.id !== id);
+                saveState();
+                renderSubscriptions();
+            }
+        }
+
+        // Render Subscription list
+        function renderSubscriptions() {
+            const container = document.getElementById('subs-container');
+            container.innerHTML = '';
+
+            let totalMonthly = 0;
+            let potentialSavingsYearly = 0;
+
+            state.subscriptions.forEach(s => {
+                if (s.active) {
+                    totalMonthly += s.cost;
+                } else {
+                    potentialSavingsYearly += (s.cost * 12);
+                }
+            });
+
+            const totalYearly = totalMonthly * 12;
+
+            document.getElementById('sub-total-monthly').innerText = `₹${totalMonthly.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+            document.getElementById('sub-total-yearly').innerText = `₹${totalYearly.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+            document.getElementById('potential-savings').innerText = `₹${potentialSavingsYearly.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+            if (state.subscriptions.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 dark:text-slate-500">
+                        <i data-lucide="refresh-cw" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
+                        <p class="text-sm font-semibold">No subscriptions recorded. Add above to begin auditing!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            state.subscriptions.forEach(s => {
+                const div = document.createElement('div');
+                div.className = `flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl border transition-all ${
+                    s.active 
+                        ? 'bg-slate-50 dark:bg-slate-900 border-slate-200/50 dark:border-slate-800' 
+                        : 'bg-slate-100/50 dark:bg-slate-900/10 border-slate-200 dark:border-slate-800 opacity-60 line-through'
+                }`;
+
+                div.innerHTML = `
+                    <div class="space-y-1">
+                        <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200">${s.name}</h5>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            ₹${s.cost.toLocaleString('en-IN')}/Month &bull; ₹${(s.cost * 12).toLocaleString('en-IN')}/Year
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3 sm:mt-0">
+                        <button onclick="toggleSubscriptionStatus(${s.id})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm active:scale-[0.97] ${
+                            s.active
+                                ? 'bg-red-50 hover:bg-red-100 dark:bg-red-955/20 text-red-650 dark:text-red-400'
+                                : 'bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-955/20 text-emerald-655 dark:text-emerald-400'
+                        }">
+                            <i data-lucide="${s.active ? 'alert-triangle' : 'check-circle'}" class="w-3.5 h-3.5"></i>
+                            <span>${s.active ? 'Cancel (Save ₹)' : 'Keep Active'}</span>
+                        </button>
+                        <button onclick="deleteSubscription(${s.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            lucide.createIcons();
+        }
+
+        // --- SECTION E: INTERACTIVE MODAL READER ---
+        
+        function readArticle(articleId) {
+            const article = articlesDB[articleId];
+            if (!article) return;
+
+            document.getElementById('modal-category').innerText = article.category;
+            document.getElementById('modal-title').innerText = article.title;
+            document.getElementById('modal-content').innerHTML = article.content;
+
+            const modal = document.getElementById('article-modal');
+            modal.classList.remove('hidden');
+            
+            // Trigger transition classes after removing display none
+            setTimeout(() => {
+                modal.classList.remove('opacity-0', 'scale-95');
+                modal.classList.add('opacity-100', 'scale-100');
+            }, 10);
+
+            // Toggle Lucide icons in dynamically added HTML elements if any
+            lucide.createIcons();
+        }
+
+        function closeArticleModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('opacity-0', 'scale-95');
+            modal.classList.remove('opacity-100', 'scale-100');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- DYNAMIC RENDER PIPELINE ---
+
+        function renderAll() {
+            populateFilterMonths();
+            renderExpenses();
+            updateSummaryCards();
+            renderChart();
+            
+            // Render non-tracker assets if currently focused on them
+            if (state.activeTab === 'planner') {
+                calculateBudgetAllocation();
+            } else if (state.activeTab === 'savings') {
+                renderGoals();
+            } else if (state.activeTab === 'subscription') {
+                renderSubscriptions();
+            }
+        }
+    </script>
+</body>
+</html>

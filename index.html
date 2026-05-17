@@ -204,6 +204,21 @@
             font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+        /* Hide scrollbars for chrome/safari/opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbars for ie/edge/firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Enforce minimum 16px text size on inputs on iOS devices to bypass browser auto-zooming */
+        @media (max-width: 640px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -454,8 +469,8 @@
             </div>
 
             <!-- Tab Switcher Navigation -->
-            <div class="flex justify-center mb-10">
-                <div class="bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl flex flex-wrap justify-center gap-1.5 max-w-full sm:max-w-4xl border border-slate-200/50 dark:border-slate-700/50 shadow-inner">
+            <div class="flex justify-center mb-10 w-full overflow-hidden px-2">
+                <div class="bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl flex md:flex-wrap overflow-x-auto whitespace-nowrap md:justify-center gap-1.5 w-full max-w-full sm:max-w-4xl border border-slate-200/50 dark:border-slate-700/50 shadow-inner no-scrollbar">
                     <button onclick="switchTab('tracker')" id="tab-btn-tracker" class="tab-btn active inline-flex items-center gap-2 py-3 px-5 sm:px-6 rounded-xl text-sm font-bold transition-all whitespace-nowrap bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm active:scale-[0.97]">
                         <i data-lucide="pie-chart" class="w-4 h-4 text-brand-500"></i>
                         <span>Expense Tracker</span>
@@ -1674,6 +1689,14 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile dropdown when navigation links are clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
         });
 
         // Dynamic Router tabs

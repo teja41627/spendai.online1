@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function() {
+            try {
+                var localData = localStorage.getItem('spendai_data');
+                var theme = 'dark';
+                if (localData) {
+                    var parsed = JSON.parse(localData);
+                    if (parsed && parsed.currentTheme) {
+                        theme = parsed.currentTheme;
+                    }
+                }
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.backgroundColor = '#0b1329';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.backgroundColor = '#f8fafc';
+                }
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.style.backgroundColor = '#0b1329';
+            }
+        })();
+    </script>
+    <title>About Us - SpendAI | Free AI Budgeting & Local Expense Tracker</title>
+    <meta name="description" content="Learn about SpendAI, a free and local-first AI-powered expense tracker, subscription auditor, and 50/30/20 budget planner built for modern Indian earners.">
+    <meta name="keywords" content="about spendai, local expense tracker, free budgeting tool india, offline personal finance app">
+    <meta name="author" content="SpendAI.online">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spendai.online/about.html" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spendai.online/about.html">
+    <meta property="og:title" content="About Us - SpendAI | Free AI Budgeting & Local Expense Tracker">
+    <meta property="og:description" content="Discover SpendAI, a secure local-first expense tracker offering interactive 50/30/20 planners, savings milestones, and subscription auditors for Indian salaries.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://spendai.online/about.html">
+    <meta property="twitter:title" content="About Us - SpendAI | Free AI Budgeting & Local Expense Tracker">
+    <meta property="twitter:description" content="Discover SpendAI, a secure local-first expense tracker offering interactive 50/30/20 planners, savings milestones, and subscription auditors for Indian salaries.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        accent: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        darkBg: '#0b1329',
+                        darkCard: '#1c2541',
+                        darkBorder: '#3a506b',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0b1329] dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+    <nav class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-[#0b1329]/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">SpendAI</span>
+                    <span class="text-[10px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-md uppercase tracking-wider">v2.6</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html#hero" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
+                    <a href="index.html#why-spendai" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Why SpendAI</a>
+                    <a href="index.html#tools-section" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Smart Tools</a>
+                    <a href="index.html#blog" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Money Academy</a>
+                    <a href="index.html#faq" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Privacy & FAQ</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <a href="index.html#tools-section" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 active:scale-95">
+                        <span>Launch App</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Open Navigation Menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1329] px-4 py-4 space-y-3 transition-all duration-300 shadow-xl">
+            <a href="index.html#hero" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
+            <a href="index.html#why-spendai" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Why SpendAI</a>
+            <a href="index.html#tools-section" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Smart Tools</a>
+            <a href="index.html#blog" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Money Academy</a>
+            <a href="index.html#faq" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Privacy & FAQ</a>
+            <a href="index.html#tools-section" class="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-brand-600 to-accent-600 text-white py-3 rounded-xl font-bold shadow-md">
+                <span>Start Tracking</span>
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </nav>
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full space-y-12">
+        <div class="relative overflow-hidden bg-white dark:bg-[#1c2541] rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-6">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <span class="inline-flex items-center gap-1.5 bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-brand-200 dark:border-brand-800/50 shadow-sm">
+                <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                Empowering Financial Independence
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-3xl mx-auto leading-tight">
+                About SpendAI
+            </h1>
+            <p class="text-base sm:text-lg text-slate-650 dark:text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+                SpendAI is a free, local-first, privacy-focused financial suite designed to give you complete visibility over where your money goes. Built directly inside your web browser, SpendAI requires no bank logins, no phone validations, and zero subscriptions.
+            </p>
+            <div class="pt-4 flex justify-center gap-4">
+                <a href="index.html#tools-section" class="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-md active:scale-95">
+                    Start Budgeting Free
+                </a>
+                <a href="contact.html" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-sm active:scale-95">
+                    Contact Our Support
+                </a>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-[#1c2541] rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center shadow-inner">
+                    <i data-lucide="eye" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Our Vision</h3>
+                <p class="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed">
+                    We envision a web where users do not have to exchange their private bank transaction statements, logins, or identities just to build a simple monthly budget. Financial tools should serve the citizen, not compile data points for advertising companies. SpendAI aims to prove that premium-tier financial planning software can run completely client-side in the browser.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-[#1c2541] rounded-3xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-800 shadow-xl space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 flex items-center justify-center shadow-inner">
+                    <i data-lucide="target" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Our Mission</h3>
+                <p class="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed">
+                    Our mission is to democratize high-fidelity financial budgeting and expense optimization for the modern Indian earner. By supporting domestic frameworks (such as INR tracking, local UPI categorizations, and subscription leakage auditing), we help users cancel unnecessary recurring debts, compound index fund savings, and establish secure financial foundations.
+                </p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-[#1c2541] rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Four Pillars of SpendAI</h2>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Engineered client-side with privacy-preserving technologies.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">Local-First Sandbox</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                            No cloud syncing, no databases, and no login required. Your data remains strictly inside your browser sandbox.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 flex items-center justify-center shrink-0">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">Heuristic Categorization</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                            An instant client-side keyword parser that recognizes brands like Swiggy, Uber, Zomato, and Jio to auto-tag categories.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                        <i data-lucide="sliders" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">50/30/20 Budget Rule</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                            Dynamic sliders to allocate monthly salaries across Needs, Wants, and Savings, tracking limits in real-time.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/30 text-red-650 dark:text-red-400 flex items-center justify-center shrink-0">
+                        <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-base">Subscription Auditor</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                            A tracker that flags recurring leaks (broadband plans, unutilized streaming platforms) to save you money annually.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-slate-100 dark:bg-[#070d1d] text-slate-500 dark:text-slate-400 py-12 border-t border-slate-200 dark:border-slate-800/70 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold shadow-sm">
+                    <i data-lucide="wallet" class="w-4 h-4"></i>
+                </div>
+                <span class="font-extrabold text-lg bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent font-semibold">SpendAI.online</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold max-w-xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed">
+                Made with ❤️ for Indians who want to track smartly, live debt-free, and grow their savings.
+            </p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <a href="about.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">About Us</a>
+                <span>&bull;</span>
+                <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">Contact Us</a>
+                <span>&bull;</span>
+                <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="#" onclick="alert('Disclaimer: SpendAI provides estimation tools. Check with qualified advisors for critical accounting needs.')" class="hover:text-slate-800 dark:hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
+                &copy; 2026 SpendAI. All rights reserved. Locally persisted in sandbox environment.
+            </p>
+        </div>
+    </footer>
+    <script>
+        let state = {
+            expenses: [],
+            income: 50000,
+            budgetSliders: { needs: 50, wants: 30, savings: 20 },
+            goals: [],
+            subscriptions: [],
+            currentTheme: 'dark',
+            activeTab: 'tracker',
+            showAdPreviews: true
+        };
+        function loadState() {
+            const localData = localStorage.getItem('spendai_data');
+            if (localData) {
+                try {
+                    const parsed = JSON.parse(localData);
+                    state = { ...state, ...parsed };
+                } catch (e) {
+                    console.error("Error loading localStorage", e);
+                }
+            }
+            syncTheme();
+        }
+        function saveState() {
+            localStorage.setItem('spendai_data', JSON.stringify(state));
+        }
+        function syncTheme() {
+            if (state.currentTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                state.currentTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
+                saveState();
+                syncTheme();
+            });
+        }
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

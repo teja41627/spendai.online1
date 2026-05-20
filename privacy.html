@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function() {
+            try {
+                var localData = localStorage.getItem('spendai_data');
+                var theme = 'dark';
+                if (localData) {
+                    var parsed = JSON.parse(localData);
+                    if (parsed && parsed.currentTheme) {
+                        theme = parsed.currentTheme;
+                    }
+                }
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.backgroundColor = '#0b1329';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.backgroundColor = '#f8fafc';
+                }
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.style.backgroundColor = '#0b1329';
+            }
+        })();
+    </script>
+    <title>Privacy Policy - SpendAI | Secure Client-Side Expense Tracker</title>
+    <meta name="description" content="Read the Privacy Policy of SpendAI. Discover how our local-first, client-side expense tracker and budget planner ensures 100% data privacy and security.">
+    <meta name="keywords" content="privacy policy, spendai privacy, local expense tracker privacy, secure budget planner">
+    <meta name="author" content="SpendAI.online">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spendai.online/privacy.html" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spendai.online/privacy.html">
+    <meta property="og:title" content="Privacy Policy - SpendAI | Secure Client-Side Expense Tracker">
+    <meta property="og:description" content="Discover how SpendAI protects your financial records by storing all logs offline in your browser's localStorage. Zero database uploads.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://spendai.online/privacy.html">
+    <meta property="twitter:title" content="Privacy Policy - SpendAI | Secure Client-Side Expense Tracker">
+    <meta property="twitter:description" content="Discover how SpendAI protects your financial records by storing all logs offline in your browser's localStorage. Zero database uploads.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200&h=630">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        accent: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        darkBg: '#0b1329',
+                        darkCard: '#1c2541',
+                        darkBorder: '#3a506b',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0b1329] dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+    <nav class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-[#0b1329]/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent">SpendAI</span>
+                    <span class="text-[10px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-md uppercase tracking-wider">v2.6</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html#hero" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
+                    <a href="index.html#why-spendai" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Why SpendAI</a>
+                    <a href="index.html#tools-section" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Smart Tools</a>
+                    <a href="index.html#blog" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Money Academy</a>
+                    <a href="index.html#faq" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Privacy & FAQ</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <a href="index.html#tools-section" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 active:scale-95">
+                        <span>Launch App</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Open Navigation Menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1329] px-4 py-4 space-y-3 transition-all duration-300 shadow-xl">
+            <a href="index.html#hero" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
+            <a href="index.html#why-spendai" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Why SpendAI</a>
+            <a href="index.html#tools-section" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Smart Tools</a>
+            <a href="index.html#blog" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Money Academy</a>
+            <a href="index.html#faq" class="block py-2 px-3 rounded-lg text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Privacy & FAQ</a>
+            <a href="index.html#tools-section" class="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-brand-600 to-accent-600 text-white py-3 rounded-xl font-bold shadow-md">
+                <span>Start Tracking</span>
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </nav>
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
+        <div class="relative overflow-hidden bg-white dark:bg-[#1c2541] rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 space-y-8">
+                <div>
+                    <span class="inline-flex items-center gap-1.5 bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-brand-200 dark:border-brand-800/50 shadow-sm">
+                        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                        Privacy Sandbox
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Privacy Policy</h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-semibold mt-2">Last Updated: May 20, 2026</p>
+                </div>
+                <hr class="border-slate-100 dark:border-slate-800">
+                <div class="prose prose-slate dark:prose-invert max-w-none text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 space-y-6">
+                    <p>
+                        Welcome to <strong>SpendAI</strong> (accessible via <a href="https://spendai.online" class="text-brand-600 dark:text-brand-400 font-semibold hover:underline">spendai.online</a>). We take your data security and digital confidentiality very seriously. Unlike traditional personal finance applications, SpendAI is built on a <strong>local-first privacy framework</strong>. This policy outlines our data management practices, how Google AdSense operates on our website, and how you can exercise full control over your information.
+                    </p>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-brand-500"></i>
+                            1. User Data Collection & Local Storage
+                        </h2>
+                        <p>
+                            We do not collect, transmit, upload, or store any of your personal financial records, transaction logs, bank account numbers, UPI IDs, or salary metrics on remote cloud databases. All calculations, tracking, and information storage happen strictly inside your own device using browser-based storage sandboxes (<code class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-mono text-xs text-slate-800 dark:text-slate-300">localStorage</code>). When you close the browser tab or clear your browser data, your records are deleted. You are the sole custodian of your financial logs.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="cookie" class="w-5 h-5 text-brand-500"></i>
+                            2. Cookies Usage Policy
+                        </h2>
+                        <p>
+                            For its core ledger and tracking operations, SpendAI does not set or access tracking cookies. However, third-party services integrated on our website—specifically Google AdSense—utilize cookies to analyze user trends and deliver advertisements.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="megaphone" class="w-5 h-5 text-brand-500"></i>
+                            3. Google AdSense Usage & Personalized Ads
+                        </h2>
+                        <p>
+                            Google, as a third-party vendor, uses cookies to serve ads on SpendAI. Google's use of advertising cookies enables it and its partners to serve relevant ads to our users based on their visits to this site and other websites on the Internet.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                            <li>Google and third-party vendors use the DoubleClick cookie to serve personalized ads on our website.</li>
+                            <li>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-accent-600 dark:text-accent-400 hover:underline">Google Ads Settings</a>.</li>
+                            <li>You can also opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" class="text-accent-600 dark:text-accent-400 hover:underline">aboutads.info</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-brand-500"></i>
+                            4. Third-Party Web Analytics
+                        </h2>
+                        <p>
+                            To maintain speed, availability, and general performance auditing, we may use standard website analytics tools to monitor general, non-personally identifiable traffic metrics (such as page views, device type, geographic region, and browser category). These metrics are aggregated, anonymized, and never linked to your financial ledger inputs.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="layers" class="w-5 h-5 text-brand-500"></i>
+                            5. Third-Party Services & CDNs
+                        </h2>
+                        <p>
+                            Our platform utilizes widely trusted Content Delivery Networks (CDNs) to load frontend libraries dynamically. These include:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                            <li><strong>Tailwind CSS CDN:</strong> Serves responsive styles.</li>
+                            <li><strong>Lucide Icons:</strong> Provides modern visual vector icons.</li>
+                            <li><strong>Chart.js:</strong> Compiles donut charts client-side.</li>
+                        </ul>
+                        <p>
+                            These CDNs may log standard IP packets for server health diagnostics, but they do not access or collect SpendAI's database state.
+                        </p>
+                    </div>
+                    <div class="space-y-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-brand-500"></i>
+                            6. Complete Privacy Assurance
+                        </h2>
+                        <p>
+                            We believe that financial tracking tools should help you budget without harvesting your financial data. SpendAI is built to show that privacy-first budgeting is completely achievable. You can clear, export, or audit your local data cache at any time using the ledger controllers on the dashboard.
+                        </p>
+                        <p>
+                            If you have questions about our local sandbox configuration, feel free to email us at <a href="mailto:support@spendai.online" class="text-brand-600 dark:text-brand-400 font-semibold hover:underline">support@spendai.online</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-slate-100 dark:bg-[#070d1d] text-slate-500 dark:text-slate-400 py-12 border-t border-slate-200 dark:border-slate-800/70 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold shadow-sm">
+                    <i data-lucide="wallet" class="w-4 h-4"></i>
+                </div>
+                <span class="font-extrabold text-lg bg-gradient-to-r from-brand-600 to-accent-600 dark:from-brand-400 dark:to-accent-500 bg-clip-text text-transparent font-semibold">SpendAI.online</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold max-w-xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed">
+                Made with ❤️ for Indians who want to track smartly, live debt-free, and grow their savings.
+            </p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <a href="about.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">About Us</a>
+                <span>&bull;</span>
+                <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">Contact Us</a>
+                <span>&bull;</span>
+                <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition-colors">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="#" onclick="alert('Disclaimer: SpendAI provides estimation tools. Check with qualified advisors for critical accounting needs.')" class="hover:text-slate-800 dark:hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
+                &copy; 2026 SpendAI. All rights reserved. Locally persisted in sandbox environment.
+            </p>
+        </div>
+    </footer>
+    <script>
+        let state = {
+            expenses: [],
+            income: 50000,
+            budgetSliders: { needs: 50, wants: 30, savings: 20 },
+            goals: [],
+            subscriptions: [],
+            currentTheme: 'dark',
+            activeTab: 'tracker',
+            showAdPreviews: true
+        };
+        function loadState() {
+            const localData = localStorage.getItem('spendai_data');
+            if (localData) {
+                try {
+                    const parsed = JSON.parse(localData);
+                    state = { ...state, ...parsed };
+                } catch (e) {
+                    console.error("Error loading localStorage", e);
+                }
+            }
+            syncTheme();
+        }
+        function saveState() {
+            localStorage.setItem('spendai_data', JSON.stringify(state));
+        }
+        function syncTheme() {
+            if (state.currentTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                state.currentTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
+                saveState();
+                syncTheme();
+            });
+        }
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

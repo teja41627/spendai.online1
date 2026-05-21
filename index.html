@@ -37,6 +37,8 @@
     <meta name="author" content="SpendAI.online">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://spendai.online/" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -279,7 +281,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2">
+                <a href="/" class="flex items-center gap-2">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20">
                         <i data-lucide="wallet" class="w-5 h-5"></i>
                     </div>
@@ -298,11 +300,6 @@
 
                 <!-- Action Button & Dark Mode & Mobile Menu Button -->
                 <div class="flex items-center gap-3">
-                    <!-- Developer Ad Preview Toggle -->
-                    <button id="ad-preview-toggle" onclick="toggleAdPreviews()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" title="Toggle Ads Previews (Developer Mode)">
-                        <i data-lucide="eye" class="w-5 h-5 hidden ad-eye-on"></i>
-                        <i data-lucide="eye-off" class="w-5 h-5 block ad-eye-off"></i>
-                    </button>
 
                     <!-- Dark Mode Toggle -->
                     <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all shadow-sm border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
@@ -339,7 +336,7 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <header id="hero" class="relative overflow-hidden pt-12 pb-16 md:py-20 bg-gradient-to-b from-brand-50/50 via-white to-transparent dark:from-brand-900/10 dark:via-[#0b1329] dark:to-transparent border-b border-slate-150 dark:border-slate-800">
+    <header id="hero" class="relative overflow-hidden pt-12 pb-16 md:py-20 bg-gradient-to-b from-brand-50/50 via-white to-transparent dark:from-brand-900/10 dark:via-[#0b1329] dark:to-transparent border-b border-slate-200 dark:border-slate-800">
         <!-- Glowing Ambient Lights in BG -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-500/10 to-accent-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -389,7 +386,7 @@
     </header>
 
     <!-- SECTION: HOW IT WORKS / WHY SPENDAI -->
-    <section id="why-spendai" class="py-16 bg-white dark:bg-[#0c152d] border-b border-slate-150 dark:border-slate-800 transition-colors duration-300">
+    <section id="why-spendai" class="py-16 bg-white dark:bg-[#0c152d] border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-xs font-extrabold uppercase bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 px-3 py-1.5 rounded-full tracking-wider">High Fidelity Utilities</span>
@@ -428,31 +425,15 @@
 
     <!-- AdSense Slot: Between Hero & Tools -->
     <div class="my-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ad-slot-container">
-        <div class="adsense-premium-unit rounded-3xl p-6 text-center text-xs select-none min-h-[100px] flex flex-col sm:flex-row justify-between items-center relative overflow-hidden transition-all duration-300">
-            <!-- AdSense HTML Embed Code placeholder -->
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;"
-                 data-ad-layout="in-article"
-                 data-ad-format="fluid"
-                 data-ad-client="ca-pub-6260385322329127"
-                 data-ad-slot="1111111111"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-amber-500">
-                    <i data-lucide="sparkles" class="w-5 h-5"></i>
-                </div>
-                <div class="text-left">
-                    <span class="font-extrabold uppercase tracking-wider text-[9px] bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400 px-2 py-0.5 rounded">Sponsored Slot</span>
-                    <p class="font-bold text-[12px] text-slate-800 dark:text-slate-100 mt-1">Google AdSense Leaderboard Banner</p>
-                    <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Standard 728x90 responsive layout element.</p>
-                </div>
-            </div>
-            <div class="mt-4 sm:mt-0 text-slate-400 text-[10px] font-semibold border-l border-slate-200 dark:border-slate-700 pl-4 text-left hidden md:block">
-                This area will automatically display contextually relevant<br>ads once configured with your verified publisher script keys.
-            </div>
-        </div>
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-6260385322329127"
+             data-ad-slot="1111111111"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <!-- MAIN TOOLS SECTION -->
@@ -687,10 +668,10 @@
                             </div>
 
                             <!-- Table Ledger (Mobile Responsive Scroll) -->
-                            <div class="overflow-x-auto rounded-xl border border-slate-150 dark:border-slate-700/60 shadow-inner">
+                            <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700/60 shadow-inner">
                                 <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[600px] sm:min-w-full">
                                     <thead>
-                                        <tr class="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-150 dark:border-slate-800 text-[10px] uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+                                        <tr class="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-[10px] uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
                                             <th class="py-3.5 px-4">Date</th>
                                             <th class="py-3.5 px-4">Category</th>
                                             <th class="py-3.5 px-4">Description</th>
@@ -706,29 +687,15 @@
 
                             <!-- AdSense Slot: After Ledger Table -->
                             <div class="mt-6 ad-slot-container">
-                                <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[100px] flex flex-col sm:flex-row justify-between items-center relative overflow-hidden transition-all duration-300">
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-format="fluid"
-                                         data-ad-layout-key="-gw-3e+1f-3d-2z"
-                                         data-ad-client="ca-pub-6260385322329127"
-                                         data-ad-slot="2222222222"></ins>
-                                    <script>
-                                         (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 dark:bg-brand-500/20 flex items-center justify-center text-brand-500">
-                                            <i data-lucide="tag" class="w-5 h-5"></i>
-                                        </div>
-                                        <div class="text-left">
-                                            <span class="font-extrabold uppercase tracking-wider text-[9px] bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded">Sponsored Inline Banner</span>
-                                            <p class="font-bold text-[12px] text-slate-800 dark:text-slate-100 mt-1">Google AdSense Inline Ledger Unit</p>
-                                        </div>
-                                    </div>
-                                    <div class="text-slate-400 text-[10px] font-semibold border-l border-slate-200 dark:border-slate-700 pl-4 hidden md:block">
-                                        Will dynamically fetch matched advertiser tags based on your keywords.
-                                    </div>
-                                </div>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="fluid"
+                                     data-ad-layout-key="-gw-3e+1f-3d-2z"
+                                     data-ad-client="ca-pub-6260385322329127"
+                                     data-ad-slot="2222222222"></ins>
+                                <script>
+                                     (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -999,12 +966,51 @@
 
                 </div>
 
-                <!-- RIGHT SIDEBAR: Google AdSense Desktop Slot (Col span 3) -->
-                <!-- AdSense Slot: Sidebar -->
-                <aside class="hidden lg:block lg:col-span-3 space-y-6 ad-slot-container">
-                    <div class="sticky top-24">
-                        <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[600px] flex flex-col justify-between items-center relative overflow-hidden transition-all duration-300">
-                            <!-- Live AdSense Code inside Sidebar -->
+                <!-- RIGHT SIDEBAR: SaaS Dashboard Widgets -->
+                <aside class="hidden lg:block lg:col-span-3 space-y-6">
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Quick Insights Widget -->
+                        <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200/50 dark:border-slate-700/50 shadow-sm space-y-4">
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-4 h-4 text-brand-500"></i>
+                                Quick Insights
+                            </h4>
+                            <div class="space-y-3 text-xs">
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400">Monthly Budget</span>
+                                    <span id="sidebar-budget-val" class="font-semibold text-slate-900 dark:text-white">₹0</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400">Total Expenses</span>
+                                    <span id="sidebar-expenses-val" class="font-semibold text-slate-900 dark:text-white">₹0</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400">Active Subs</span>
+                                    <span id="sidebar-subs-count" class="font-semibold text-slate-900 dark:text-white">0</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5">
+                                    <span class="text-slate-500 dark:text-slate-400">Remaining Balance</span>
+                                    <span id="sidebar-balance-val" class="font-semibold text-emerald-500">₹0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Money Tip Widget -->
+                        <div class="bg-gradient-to-tr from-brand-600/10 to-accent-600/10 rounded-2xl p-5 border border-brand-500/20 dark:border-brand-500/10 shadow-sm space-y-3 relative overflow-hidden">
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                <i data-lucide="lightbulb" class="w-4 h-4 text-accent-500"></i>
+                                Smart Money Tip
+                            </h4>
+                            <p id="sidebar-money-tip" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium min-h-[60px] transition-opacity duration-150">
+                                Loading helpful tips to improve your budget balance...
+                            </p>
+                            <button id="next-tip-btn" class="text-[10px] text-brand-600 dark:text-brand-400 font-bold hover:underline flex items-center gap-1 mt-2">
+                                Next Tip <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+
+                        <!-- Invisible AdSense Sidebar Slot -->
+                        <div class="ad-slot-container">
                             <ins class="adsbygoogle"
                                  style="display:block"
                                  data-ad-client="ca-pub-6260385322329127"
@@ -1014,22 +1020,6 @@
                             <script>
                                  (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
-                            <div class="flex flex-col items-center gap-2 mt-4">
-                                <div class="w-12 h-12 rounded-2xl bg-brand-500/10 dark:bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400 shadow-md">
-                                    <i data-lucide="layout" class="w-6 h-6"></i>
-                                </div>
-                                <span class="font-extrabold uppercase tracking-wider text-[9px] bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-400 px-2 py-0.5 rounded mt-2">Sponsored Sidebar</span>
-                                <h4 class="font-extrabold text-[13px] text-slate-800 dark:text-slate-100">AdSense Responsive Tower</h4>
-                            </div>
-                            
-                            <div class="space-y-3 text-left w-full border-t border-slate-200 dark:border-slate-700 pt-4">
-                                <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                                    Standard 300x600 responsive ad unit coordinates perfectly next to tracker modules.
-                                </p>
-                                <p class="text-[9px] text-slate-400 dark:text-slate-500 leading-relaxed italic">
-                                    Previews can be toggled using the Ad preview controller in the top navbar.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </aside>
@@ -1045,7 +1035,7 @@
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-xs font-extrabold uppercase bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-400 px-3.5 py-1.5 rounded-full tracking-wider">Financial Literacy</span>
                 <h2 class="text-3.5xl font-extrabold text-slate-900 dark:text-white mt-4 sm:text-4xl">Smart Money Academy</h2>
-                <p class="mt-4 text-base text-slate-650 dark:text-slate-300 max-w-2xl mx-auto">
+                <p class="mt-4 text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
                     Actionable, in-depth personal finance intelligence designed specifically for the modern Indian earner. Master UPI flows, cancel recurring leaks, build robust emergency funds, and optimize local portfolios offline.
                 </p>
             </div>
@@ -1125,7 +1115,7 @@
                         </div>
                         <span class="inline-block text-[10px] font-extrabold tracking-wider text-brand-600 dark:text-brand-400 uppercase bg-brand-50 dark:bg-brand-900/20 px-2.5 py-1 rounded-md">Milestones</span>
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">How to Build an Emergency Fund (2026)</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">The baseline emergency requirements in 2026. Learn safe Indian avenues (sweep-in FDs, liquid funds) to insulate your household finances.</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">The baseline emergency requirements in 2026. Learn safe Indian avenues (sweep-in FDs, liquid funds) to insulate your household finances.</p>
                     </div>
                     <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
                         <button onclick="readArticle('emergency-fund')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -1141,7 +1131,7 @@
                         </div>
                         <span class="inline-block text-[10px] font-extrabold tracking-wider text-accent-600 dark:text-accent-400 uppercase bg-accent-50 dark:bg-accent-900/20 px-2.5 py-1 rounded-md">Transaction Tracking</span>
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Best Ways to Track UPI & Cash Together</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">Micro UPI payments (₹10 chai stalls, autowala charges) clog bank statements. Discover structural parsing filters to consolidate UPI & cash leaks.</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Micro UPI payments (₹10 chai stalls, autowala charges) clog bank statements. Discover structural parsing filters to consolidate UPI & cash leaks.</p>
                     </div>
                     <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
                         <button onclick="readArticle('track-upi-cash')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -1157,7 +1147,7 @@
                         </div>
                         <span class="inline-block text-[10px] font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase bg-emerald-50 dark:bg-emerald-900/20 px-2.5 py-1 rounded-md">Mistakes Audit</span>
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">Common Budgeting Mistakes Indians Make</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">Mistaking savings as "whatever is left at the end of the month" or neglecting seasonal premium bills. Avoid structural leaks instantly.</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Mistaking savings as "whatever is left at the end of the month" or neglecting seasonal premium bills. Avoid structural leaks instantly.</p>
                     </div>
                     <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
                         <button onclick="readArticle('budget-mistakes')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -1173,7 +1163,7 @@
                         </div>
                         <span class="inline-block text-[10px] font-extrabold tracking-wider text-amber-600 dark:text-amber-400 uppercase bg-amber-50 dark:bg-amber-900/20 px-2.5 py-1 rounded-md">Salaried Guides</span>
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">50/30/20 Rule for Indian Salaries</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-455 line-clamp-3">How to adapt standard limits to Indian household contexts. Scaling structures for ₹30k, ₹75k, and ₹1.5L salary ranges in Tier-1 cities.</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">How to adapt standard limits to Indian household contexts. Scaling structures for ₹30k, ₹75k, and ₹1.5L salary ranges in Tier-1 cities.</p>
                     </div>
                     <div class="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs">
                         <button onclick="readArticle('salary-50-30-20')" class="text-brand-600 dark:text-brand-400 font-extrabold flex items-center gap-1 hover:gap-2 transition-all">Read Article <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -1182,26 +1172,106 @@
 
                 <!-- AdSense Slot: Inside Blog Section -->
                 <div class="ad-slot-container">
-                    <div class="adsense-premium-unit rounded-3xl p-5 text-center text-xs select-none min-h-[220px] flex flex-col justify-between items-center relative overflow-hidden transition-all duration-300">
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="fluid"
-                             data-ad-layout-key="-fg+5h+20-m-4w"
-                             data-ad-client="ca-pub-6260385322329127"
-                             data-ad-slot="4444444444"></ins>
-                        <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        <div class="flex flex-col items-center gap-2">
-                            <div class="w-10 h-10 rounded-xl bg-accent-500/10 dark:bg-accent-500/20 flex items-center justify-center text-accent-500 shadow-md">
-                                <i data-lucide="megaphone" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-extrabold uppercase tracking-wider text-[9px] bg-accent-100 dark:bg-accent-950 text-accent-700 dark:text-accent-400 px-2 py-0.5 rounded mt-1">Sponsored Box</span>
-                            <h4 class="font-bold text-[12px] text-slate-800 dark:text-slate-100">Google AdSense Native ad</h4>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-fg+5h+20-m-4w"
+                         data-ad-client="ca-pub-6260385322329127"
+                         data-ad-slot="4444444444"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-16 sm:py-20 bg-slate-50 dark:bg-[#0b1329] border-t border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 px-3.5 py-1.5 rounded-full tracking-wider border border-brand-200 dark:border-brand-800/30">User Testimonials</span>
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl mt-4">
+                    Trusted by Personal Finance Enthusiasts
+                </h2>
+                <p class="mt-4 text-base text-slate-600 dark:text-slate-400">
+                    See how individuals are optimizing their budgets, saving on monthly subscriptions, and keeping their financial data 100% private.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                         </div>
-                        <p class="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-2 leading-relaxed border-t border-slate-150 dark:border-slate-700 pt-3">
-                            Will dynamically match educational topics to native marketing content blocks.
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                            "As someone who tracks every single rupee, SpendAI's offline-first approach is a godsend. I don't have to share my bank credentials or link any accounts. It is fast, private, and works flawlessly on my browser."
                         </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-bold text-sm">
+                            AR
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Aditya Rao</h4>
+                            <p class="text-[11px] text-slate-400">Product Manager, Bengaluru</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                            "The subscription leak scanner saved me ₹2,400 in the first month alone by helping me identify a redundant SaaS subscription I forgot to cancel. The 50/30/20 budget slider is extremely intuitive."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-bold text-sm">
+                            NS
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Neha Sharma</h4>
+                            <p class="text-[11px] text-slate-400">Software Engineer, Mumbai</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                            "I love the clean interface and Indian Rupee (₹) formatting. Most trackers are bloated and force you to link bank accounts. SpendAI is super lightweight and keeps my data where it belongs - on my own device."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-accent-600 flex items-center justify-center text-white font-bold text-sm">
+                            KP
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Karan Patel</h4>
+                            <p class="text-[11px] text-slate-400">Freelance Designer, Pune</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1292,7 +1362,7 @@
                 </button>
             </div>
             <!-- Content -->
-            <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-350">
+            <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 <!-- Content loaded dynamically via javascript -->
             </div>
             <!-- Footer -->
@@ -1327,8 +1397,7 @@
             goals: [],
             subscriptions: [],
             currentTheme: 'dark',
-            activeTab: 'tracker',
-            showAdPreviews: true // Developer Mode Toggle for previewing placeholders
+            activeTab: 'tracker'
         };
 
         // Static categorization keyword mapping
@@ -1379,17 +1448,17 @@
                     
                     <div class="my-5 bg-emerald-50 dark:bg-emerald-950/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
                         <strong class="text-emerald-600 dark:text-emerald-400 font-bold block mb-2 text-sm">💡 The Local-First Privacy Paradigm:</strong>
-                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">By shifting to local-first, browser-based sandboxes like SpendAI, your private spending logs never touch any remote database. Everything remains strictly encrypted inside your device's web storage sandbox (<code class="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs font-mono font-bold">localStorage</code>). When you close the tab, your data remains fully offline, insulated from corporate eyes.</p>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">By shifting to local-first, browser-based sandboxes like SpendAI, your private spending logs never touch any remote database. Everything remains strictly encrypted inside your device's web storage sandbox (<code class="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs font-mono font-bold">localStorage</code>). When you close the tab, your data remains fully offline, insulated from corporate eyes.</p>
                     </div>
 
                     <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">A Practical Manual Tracking Routine:</p>
                     <p class="mb-3">Manual budgeting might feel like extra work, but it actively builds financial mindfulness. When an app automatically logs your expenses, you lose psychological touch with your money. Manual entry forces a brief moment of reflection on every purchasing decision.</p>
-                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-600 dark:text-slate-400 mb-4">
                         <li><strong>Micro-Logging Habit:</strong> Dedicate just 5 seconds right after a Swiggy transaction or a UPI pay-out to punch the numbers into SpendAI.</li>
                         <li><strong>Perform Weekly CSV Archives:</strong> Every Sunday evening, tap the "Export CSV" tool. Maintain a local folder on your computer's hard drive to archive monthly spreadsheet ledgers.</li>
                         <li><strong>Standardize Categorization Tags:</strong> Ensure your categories align correctly (e.g. putting tea stall payments under Food & Dining, metro card additions under Transport) to generate highly accurate donut aggregates.</li>
                     </ul>
-                    <p class="mt-4 font-semibold text-slate-800 dark:text-slate-250">Conclusion:</p>
+                    <p class="mt-4 font-semibold text-slate-800 dark:text-slate-300">Conclusion:</p>
                     <p class="text-xs text-slate-500 dark:text-slate-400">Taking control of your wealth starts with taking control of your data. Insulate your household logs from tracking companies, secure your banks, and experience professional-grade local budgeting offline today.</p>
                 `
             },
@@ -1402,11 +1471,11 @@
                     
                     <div class="my-5 bg-red-50/60 dark:bg-red-950/20 p-5 rounded-2xl border border-red-200/50 dark:border-red-900/50">
                         <strong class="text-red-650 dark:text-red-400 font-bold block mb-2 text-sm">📉 The Exponential Leak Calculator:</strong>
-                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">An invisible monthly leak of ₹1,500 equates to an annual wastage of ₹18,000. If that same sum were directed into a standard monthly SIP index fund yielding 12%, it would accumulate to nearly ₹1.2 Lakhs in 5 years. Laziness in canceling unutilized subscription mandates is highly expensive.</p>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">An invisible monthly leak of ₹1,500 equates to an annual wastage of ₹18,000. If that same sum were directed into a standard monthly SIP index fund yielding 12%, it would accumulate to nearly ₹1.2 Lakhs in 5 years. Laziness in canceling unutilized subscription mandates is highly expensive.</p>
                     </div>
 
                     <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Where Households Leak Money the Most:</p>
-                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-600 dark:text-slate-400 mb-4">
                         <li><strong>Unused Entertainment Mandates:</strong> Maintaining subscriptions to Netflix, Prime Video, Hotstar, and SonyLIV simultaneously when you only watch one show per month.</li>
                         <li><strong>Duplicate App Bundles:</strong> Paying ₹149 for standalone Spotify Premium when your broadband provider already bundles free music streaming.</li>
                         <li><strong>Forgotten Trial Renewals:</strong> Signing up for 1-month international utility trials and forgetting to drop the card mandate before the dollar conversions trigger.</li>
@@ -1426,7 +1495,7 @@
                     
                     <div class="my-5 bg-amber-50 dark:bg-amber-950/20 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/50">
                         <strong class="text-amber-700 dark:text-amber-400 font-bold block mb-2 text-sm">💡 Quick Wins to Reclaim ₹5,000 Monthly:</strong>
-                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-300">
                             <li><strong>UPI Subscription Consolidation (Saves ~₹1,500):</strong> Bundle your streaming platforms into single annual broadband packages or family plans.</li>
                             <li><strong>Smart Commuting Shift (Saves ~₹2,000):</strong> Swap three prime-time cab rides per week for the local metro or auto-pool alternatives.</li>
                             <li><strong>Limit Convenience Ordering (Saves ~₹1,500):</strong> Order directly from local restaurants instead of using food delivery apps. Cabs, delivery fees, and platform markups add 30-40% to your bill.</li>
@@ -1448,11 +1517,11 @@
                     
                     <div class="my-5 bg-red-50/60 dark:bg-red-955/20 p-5 rounded-2xl border border-red-200/50 dark:border-red-900/50">
                         <strong class="text-red-655 dark:text-red-400 font-bold block mb-2 text-sm">⚠️ The Interest-Free Myth:</strong>
-                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">A 45-day interest-free window is highly useful, but missing your payment deadline by even one day triggers steep interest rates of 36% to 42% per annum, calculated from the transaction date. Paying only the "Minimum Due" is a recipe for a debt spiral.</p>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">A 45-day interest-free window is highly useful, but missing your payment deadline by even one day triggers steep interest rates of 36% to 42% per annum, calculated from the transaction date. Paying only the "Minimum Due" is a recipe for a debt spiral.</p>
                     </div>
 
                     <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Smart Credit Guidelines for Indian Earners:</p>
-                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-600 dark:text-slate-400 mb-4">
                         <li><strong>Always Pay the Total Due:</strong> Never roll over balances. Set up automatic full payment mandates to avoid missed deadlines.</li>
                         <li><strong>Beware of 'No-Cost' EMIs:</strong> These often include hidden processing charges, and you lose the discount benefits usually available for full cash payments.</li>
                         <li><strong>Maintain Credit Utilization Below 30%:</strong> Utilizing more than 30% of your total credit limit can signal high debt dependency, negatively affecting your CIBIL score.</li>
@@ -1469,12 +1538,12 @@
                     
                     <div class="my-5 bg-brand-55 dark:bg-brand-950/20 p-5 rounded-2xl border border-brand-200/50 dark:border-brand-900/50">
                         <strong class="text-brand-600 dark:text-brand-400 font-bold block mb-2 text-sm">💼 Sizing Your Safety Net:</strong>
-                        <p class="text-xs leading-relaxed text-slate-705 dark:text-slate-350">Aim to save 6 months' worth of essential living expenses (Rent, EMIs, food, utilities, and insurance premiums). If your monthly essentials total ₹40,000, your target fund should be ₹2.4 Lakhs.</p>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">Aim to save 6 months' worth of essential living expenses (Rent, EMIs, food, utilities, and insurance premiums). If your monthly essentials total ₹40,000, your target fund should be ₹2.4 Lakhs.</p>
                     </div>
 
                     <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Where to Park Your Fund Safely:</p>
-                    <p class="mb-3 text-xs text-slate-650 dark:text-slate-405 leading-relaxed">Safety and liquidity are more important than high returns for this fund. Do not lock this money in volatile stocks or long-term lock-in assets.</p>
-                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-650 dark:text-slate-400 mb-4">
+                    <p class="mb-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Safety and liquidity are more important than high returns for this fund. Do not lock this money in volatile stocks or long-term lock-in assets.</p>
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-600 dark:text-slate-400 mb-4">
                         <li><strong>Sweep-in Fixed Deposits:</strong> Linked to your primary savings account, sweep-in FDs earn higher interest while keeping funds immediately accessible via ATM.</li>
                         <li><strong>High-Interest Savings Accounts:</strong> Park a portion in reliable banking institutions offering 5-6% yields on daily balances.</li>
                         <li><strong>Liquid Mutual Funds:</strong> These low-risk funds offer redemption within 24 hours, making them a great option for the second half of your safety net.</li>
@@ -1493,11 +1562,11 @@
                     
                     <div class="my-5 bg-accent-50 dark:bg-accent-950/20 p-5 rounded-2xl border border-accent-100 dark:border-accent-900/50">
                         <strong class="text-accent-600 dark:text-accent-400 font-bold block mb-2 text-sm">📈 The Clutter Effect:</strong>
-                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-350">A bank statement filled with hundreds of small UPI payments makes manual categorization tedious, leading to budgeting fatigue. Tracking cash withdrawals alongside micro UPI payments is key to maintaining a clear financial picture.</p>
+                        <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">A bank statement filled with hundreds of small UPI payments makes manual categorization tedious, leading to budgeting fatigue. Tracking cash withdrawals alongside micro UPI payments is key to maintaining a clear financial picture.</p>
                     </div>
 
                     <p class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-5 mb-3">Effective Strategies for Consolidated Tracking:</p>
-                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-655 dark:text-slate-400 mb-4">
+                    <ul class="list-disc pl-5 space-y-2.5 text-xs text-slate-600 dark:text-slate-400 mb-4">
                         <li><strong>Use UPI Lite for Micro-payments:</strong> Keep small payments under ₹200 inside UPI Lite. It acts as an offline wallet, preventing small transactions from cluttering your bank statement.</li>
                         <li><strong>Track Cash Withdrawals as Expenses:</strong> When you withdraw cash, log the full amount under "Miscellaneous" or "Cash Reserves" immediately, rather than trying to track every individual paper note later.</li>
                         <li><strong>Weekly Aggregation:</strong> Spend just 5 minutes every Sunday review and logging your larger UPI payments. SpendAI's auto-suggestion keyword filters can help speed up this process.</li>
@@ -1513,7 +1582,7 @@
                     
                     <div class="my-5 bg-emerald-50 dark:bg-emerald-950/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
                         <strong class="text-emerald-600 dark:text-emerald-400 font-bold block mb-2 text-sm">⚠️ Structural Mistakes to Avoid:</strong>
-                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                        <ul class="list-decimal pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-300">
                             <li><strong>Ignoring Irregular Annual Expenses:</strong> Annual payments like car insurance or school fees can disrupt your budget if you don't plan ahead for them.</li>
                             <li><strong>Underestimating Convenience Costs:</strong> Small convenience fees from delivery apps and quick commerce portals can quietly add up to thousands of rupees over time.</li>
                             <li><strong>Impulse Buying via EMI:</strong> Relying on low-cost EMIs to purchase lifestyle goods can stretch your cash flow thin.</li>
@@ -1535,7 +1604,7 @@
                     
                     <div class="my-5 bg-amber-50 dark:bg-amber-955/20 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/50">
                         <strong class="text-amber-705 dark:text-amber-400 font-bold block mb-2 text-sm">💼 Tailoring Allocations by Salary Bracket:</strong>
-                        <ul class="list-disc pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-350">
+                        <ul class="list-disc pl-5 space-y-2 text-xs text-slate-700 dark:text-slate-300">
                             <li><strong>Starting Salary (₹30,000):</strong> Rents in Tier-1 cities can be high. Consider adjusting your allocation to <strong>60% Needs, 20% Wants, and 20% Savings</strong> until your income grows.</li>
                             <li><strong>Mid-Level Salary (₹75,000):</strong> A balanced salary allows you to align closely with the classic <strong>50% Needs, 30% Wants, and 20% Savings</strong> framework.</li>
                             <li><strong>Senior Level Salary (₹1,50,000+):</strong> Take advantage of higher income to accelerate your financial freedom by shifting to <strong>40% Needs, 20% Wants, and 40% Savings</strong>.</li>
@@ -1564,6 +1633,15 @@
             // Set current date in expense picker
             document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
 
+            // Initialize Sidebar Tip
+            rotateMoneyTip(0);
+            
+            // Next tip button event listener
+            const nextTipBtn = document.getElementById('next-tip-btn');
+            if (nextTipBtn) {
+                nextTipBtn.addEventListener('click', () => rotateMoneyTip());
+            }
+
             // Render Tools
             renderAll();
 
@@ -1585,7 +1663,7 @@
                     if (!state.subscriptions) state.subscriptions = [];
                     if (!state.currentTheme) state.currentTheme = 'dark';
                     if (!state.activeTab) state.activeTab = 'tracker';
-                    if (state.showAdPreviews === undefined) state.showAdPreviews = true;
+
                 } catch (e) {
                     console.error("Error loading localStorage, seeding default setup.", e);
                     seedDefaults();
@@ -1597,8 +1675,7 @@
             // Theme sync
             syncTheme();
             
-            // Sync Ad preview visuals
-            syncAdPreviews();
+
 
             // Set budget input value
             document.getElementById('budget-income').value = state.income;
@@ -1620,7 +1697,6 @@
             state.budgetSliders = { needs: 50, wants: 30, savings: 20 };
             state.currentTheme = 'dark';
             state.activeTab = 'tracker';
-            state.showAdPreviews = true;
             saveState();
         }
 
@@ -1659,30 +1735,57 @@
             }
         }
 
-        // Ad preview switch logic
-        function toggleAdPreviews() {
-            state.showAdPreviews = !state.showAdPreviews;
-            saveState();
-            syncAdPreviews();
+        // --- SIDEBAR WIDGETS LOGIC ---
+        const moneyTips = [
+            "Cancel unused streaming/app subscriptions. A leak of ₹999/month costs ₹12,000 yearly.",
+            "Park your emergency fund in sweep-in FDs or liquid mutual funds for yield and instant liquidity.",
+            "Keep credit card utilization below 30% and pay the total outstanding on time to safeguard your CIBIL score.",
+            "Consolidate multiple small UPI transactions. Tracking 50 micro-spends is harder than reviewing weekly cash withdrawals.",
+            "Apply the 50/30/20 rule: allocate 50% for Needs, 30% for discretionary Wants, and 20% for future Savings.",
+            "Start a monthly SIP in a low-cost index fund. Consistency beats timing the stock market.",
+            "Protect your family with term insurance and health insurance separate from corporate policies."
+        ];
+
+        let currentTipIndex = 0;
+        function rotateMoneyTip(forceIndex = null) {
+            const tipEl = document.getElementById('sidebar-money-tip');
+            if (!tipEl) return;
+            if (forceIndex !== null) {
+                currentTipIndex = forceIndex;
+            } else {
+                currentTipIndex = (currentTipIndex + 1) % moneyTips.length;
+            }
+            tipEl.classList.add('opacity-0');
+            setTimeout(() => {
+                tipEl.innerText = moneyTips[currentTipIndex];
+                tipEl.classList.remove('opacity-0');
+                tipEl.classList.add('opacity-100');
+            }, 150);
         }
 
-        function syncAdPreviews() {
-            const eyeOn = document.querySelector('.ad-eye-on');
-            const eyeOff = document.querySelector('.ad-eye-off');
-            const adSlots = document.querySelectorAll('.ad-slot-container');
+        function updateSidebarWidgets() {
+            // Update Quick Insights values
+            const monthlyBudget = state.income || 0;
+            const totalExpenses = state.expenses.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
+            const activeSubsCount = state.subscriptions ? state.subscriptions.filter(s => s.active).length : 0;
+            const remainingBalance = monthlyBudget - totalExpenses;
 
-            if (state.showAdPreviews) {
-                adSlots.forEach(el => el.classList.remove('hidden'));
-                eyeOn.classList.remove('hidden');
-                eyeOn.classList.add('block');
-                eyeOff.classList.remove('block');
-                eyeOff.classList.add('hidden');
-            } else {
-                adSlots.forEach(el => el.classList.add('hidden'));
-                eyeOn.classList.remove('block');
-                eyeOn.classList.add('hidden');
-                eyeOff.classList.remove('hidden');
-                eyeOff.classList.add('block');
+            const budgetEl = document.getElementById('sidebar-budget-val');
+            const expensesEl = document.getElementById('sidebar-expenses-val');
+            const subsEl = document.getElementById('sidebar-subs-count');
+            const balanceEl = document.getElementById('sidebar-balance-val');
+
+            if (budgetEl) budgetEl.innerText = `₹${monthlyBudget.toLocaleString('en-IN')}`;
+            if (expensesEl) expensesEl.innerText = `₹${totalExpenses.toLocaleString('en-IN')}`;
+            if (subsEl) subsEl.innerText = activeSubsCount;
+            
+            if (balanceEl) {
+                balanceEl.innerText = `₹${remainingBalance.toLocaleString('en-IN')}`;
+                if (remainingBalance < 0) {
+                    balanceEl.className = 'font-semibold text-rose-500';
+                } else {
+                    balanceEl.className = 'font-semibold text-emerald-500';
+                }
             }
         }
 
@@ -2253,6 +2356,7 @@
             } else {
                 alertBox.classList.add('hidden');
             }
+            updateSidebarWidgets();
         }
 
         // --- SECTION C: SAVINGS GOAL CALCULATOR LOGIC ---
@@ -2473,6 +2577,7 @@
             });
 
             lucide.createIcons();
+            updateSidebarWidgets();
         }
 
         // --- SECTION E: INTERACTIVE MODAL READER ---
@@ -2524,6 +2629,9 @@
             } else if (state.activeTab === 'subscription') {
                 renderSubscriptions();
             }
+
+            // Update Sidebar Widgets
+            updateSidebarWidgets();
         }
     </script>
 </body>

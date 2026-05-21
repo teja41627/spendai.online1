@@ -28,11 +28,17 @@
         })();
     </script>
     <title>Contact Us - SpendAI | Customer Support & Feedback</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="description" content="Get in touch with the SpendAI team. Send us your feedback, bug reports, or partnership inquiries regarding our local-first expense tracker.">
     <meta name="keywords" content="contact spendai, spendai support, expense tracker contact, personal finance email">
     <meta name="author" content="SpendAI.online">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://spendai.online/contact" />
+
+    <!-- Google AdSense Integration (Global Script) -->
+    <!-- Swap 'ca-pub-6260385322329127' with your verified Google AdSense Publisher ID -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6260385322329127" crossorigin="anonymous"></script>
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://spendai.online/contact">
     <meta property="og:title" content="Contact Us - SpendAI | Customer Support & Feedback">
@@ -193,24 +199,25 @@
                         <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Send Us a Message</h2>
                         <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">We typically reply within 24 hours.</p>
                     </div>
-                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                    <form name="contact" method="POST" data-netlify="true" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <input type="hidden" name="form-name" value="contact">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-slate-655 dark:text-slate-300 mb-1.5 font-semibold">Full Name *</label>
-                                <input type="text" id="contact-name" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5 font-semibold">Full Name *</label>
+                                <input type="text" id="contact-name" name="name" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                             </div>
                             <div>
-                                <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-slate-655 dark:text-slate-300 mb-1.5 font-semibold">Email Address *</label>
-                                <input type="email" id="contact-email" required placeholder="e.g. rahul@example.com" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5 font-semibold">Email Address *</label>
+                                <input type="email" id="contact-email" name="email" required placeholder="e.g. rahul@example.com" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                             </div>
                         </div>
                         <div>
-                            <label for="contact-subject" class="block text-xs font-bold uppercase tracking-wider text-slate-655 dark:text-slate-300 mb-1.5 font-semibold">Subject *</label>
-                            <input type="text" id="contact-subject" required placeholder="e.g. Suggestion for new chart tool" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <label for="contact-subject" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5 font-semibold">Subject *</label>
+                            <input type="text" id="contact-subject" name="subject" required placeholder="e.g. Suggestion for new chart tool" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                         </div>
                         <div>
-                            <label for="contact-message" class="block text-xs font-bold uppercase tracking-wider text-slate-655 dark:text-slate-300 mb-1.5 font-semibold">Message *</label>
-                            <textarea id="contact-message" required rows="5" placeholder="Write your message here details..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                            <label for="contact-message" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5 font-semibold">Message *</label>
+                            <textarea id="contact-message" name="message" required rows="5" placeholder="Write your message here details..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
                         </div>
                         <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all active:scale-[0.97]">
                             <i data-lucide="send" class="w-4 h-4"></i>
@@ -296,26 +303,41 @@
         }
         function handleContactSubmit(event) {
             event.preventDefault();
+            const myForm = event.target;
+            const formData = new FormData(myForm);
+            
             const name = document.getElementById('contact-name').value.trim();
             const email = document.getElementById('contact-email').value.trim();
             const subject = document.getElementById('contact-subject').value.trim();
             const formContainer = document.getElementById('contact-form-container');
-            formContainer.innerHTML = `
-                <div class="text-center py-10 space-y-4 animate-fadeIn">
-                    <div class="w-16 h-16 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center mx-auto shadow-inner">
-                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                formContainer.innerHTML = `
+                    <div class="text-center py-10 space-y-4 animate-fadeIn">
+                        <div class="w-16 h-16 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center mx-auto shadow-inner">
+                            <i data-lucide="check-circle" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Message Sent Successfully!</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
+                            Thank you, <strong>${name}</strong>. Your message regarding "${subject}" has been queued. We will respond to <strong>${email}</strong> within 24 hours.
+                        </p>
+                        <button onclick="window.location.reload()" class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow-md transition-all active:scale-[0.97]">
+                            <span>Send Another Message</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Message Sent Successfully!</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
-                        Thank you, <strong>${name}</strong>. Your message regarding "${subject}" has been queued. We will respond to <strong>${email}</strong> within 24 hours.
-                    </p>
-                    <button onclick="window.location.reload()" class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-accent-600 text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow-md transition-all active:scale-[0.97]">
-                        <span>Send Another Message</span>
-                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-            `;
-            lucide.createIcons();
+                `;
+                lucide.createIcons();
+            })
+            .catch((error) => {
+                console.error("Netlify form submission error:", error);
+                alert("There was an issue sending your message. Please try again.");
+            });
         }
         window.addEventListener('DOMContentLoaded', () => {
             loadState();
